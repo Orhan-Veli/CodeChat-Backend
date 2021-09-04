@@ -969,3 +969,37 @@ System.ArgumentNullException: Value cannot be null. (Parameter 'source')
 2021-08-31 22:19:08.735 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllModels (Category) in 15506.7223ms
 2021-08-31 22:19:08.738 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
 2021-08-31 22:19:08.740 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:7001/api/category application/json 413 - 400 - text/plain;+charset=utf-8 15625.6358ms
+2021-09-04 00:34:27.511 +03:00 [INF] Now listening on: https://localhost:7001
+2021-09-04 00:34:27.519 +03:00 [INF] Now listening on: http://localhost:7000
+2021-09-04 00:34:27.520 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-09-04 00:34:27.520 +03:00 [INF] Hosting environment: Development
+2021-09-04 00:34:27.520 +03:00 [INF] Content root path: C:\Users\orhan\Desktop\CodeChat\CodeChat-Backend\Category
+2021-09-04 00:35:12.041 +03:00 [INF] Now listening on: https://localhost:7001
+2021-09-04 00:35:12.049 +03:00 [INF] Now listening on: http://localhost:7000
+2021-09-04 00:35:12.050 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-09-04 00:35:12.050 +03:00 [INF] Hosting environment: Development
+2021-09-04 00:35:12.050 +03:00 [INF] Content root path: C:\Users\orhan\Desktop\CodeChat\CodeChat-Backend\Category
+2021-09-04 00:43:15.034 +03:00 [INF] Now listening on: https://localhost:7001
+2021-09-04 00:43:15.043 +03:00 [INF] Now listening on: http://localhost:7000
+2021-09-04 00:43:15.043 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-09-04 00:43:15.043 +03:00 [INF] Hosting environment: Development
+2021-09-04 00:43:15.043 +03:00 [INF] Content root path: C:\Users\orhan\Desktop\CodeChat\CodeChat-Backend\Category
+2021-09-04 00:44:38.521 +03:00 [INF] Now listening on: https://localhost:7001
+2021-09-04 00:44:38.529 +03:00 [INF] Now listening on: http://localhost:7000
+2021-09-04 00:44:38.530 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-09-04 00:44:38.530 +03:00 [INF] Hosting environment: Development
+2021-09-04 00:44:38.530 +03:00 [INF] Content root path: C:\Users\orhan\Desktop\CodeChat\CodeChat-Backend\Category
+2021-09-04 01:14:03.105 +03:00 [INF] Now listening on: https://localhost:7001
+2021-09-04 01:14:03.113 +03:00 [INF] Now listening on: http://localhost:7000
+2021-09-04 01:14:03.113 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-09-04 01:14:03.113 +03:00 [INF] Hosting environment: Development
+2021-09-04 01:14:03.113 +03:00 [INF] Content root path: C:\Users\orhan\Desktop\CodeChat\CodeChat-Backend\Category
+2021-09-04 01:53:20.115 +03:00 [INF] Now listening on: https://localhost:7001
+2021-09-04 01:53:20.123 +03:00 [INF] Now listening on: http://localhost:7000
+2021-09-04 01:53:20.123 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-09-04 01:53:20.124 +03:00 [INF] Hosting environment: Development
+2021-09-04 01:53:20.124 +03:00 [INF] Content root path: C:\Users\orhan\Desktop\CodeChat\CodeChat-Backend\Category
+2021-09-04 02:06:55.977 +03:00 [INF] Now listening on: http://localhost:7000
+2021-09-04 02:06:56.048 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-09-04 02:06:56.048 +03:00 [INF] Hosting environment: Development
+2021-09-04 02:06:56.048 +03:00 [INF] Content root path: C:\Users\orhan\Desktop\CodeChat\CodeChat-Backend\Category

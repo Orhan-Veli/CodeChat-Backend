@@ -7,11 +7,11 @@ using Microsoft.Extensions.Logging;
 using Message.Business.Concrete;
 using Message.Business.Abstract;
 using Message.Dal.Model;
-
+using Serilog;
 namespace Message.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class MessageController : ControllerBase
     {
         private readonly IElasticService _elasticService;
