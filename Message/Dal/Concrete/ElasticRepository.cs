@@ -19,7 +19,7 @@ namespace Message.Dal.Concrete
         }
         public async Task<bool> Create(MessageModel model)
         {
-            var response = await _elasticClient.CreateAsync(model, x => x.Index(_indexName).Id(model.CategoryId));
+            var response = await _elasticClient.CreateAsync(model, x => x.Index(_indexName).Id(model.Id));
             return response.IsValid;
         }
         public async Task<MessageModel> Update(MessageModel model)
