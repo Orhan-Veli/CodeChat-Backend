@@ -20,6 +20,8 @@ using Nest;
 using Message.Extensions;
 using Message.Validation;
 using FluentValidation;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.Cors;
 namespace Message
 {
     public class Startup
@@ -36,6 +38,9 @@ namespace Message
         {
             services.AddControllers();
             services.AddSingleton(Configuration);
+            services.AddSignalR();
+            services.AddSingleton<IRabbitMqRepository, RabbitMqRepository>();
+            services.AddSingleton<IRabbitMqService, RabbitMqService>();
             services.AddSingleton<IEntityRepository<MessageModel>, ElasticRepository>();
             services.AddSingleton<IElasticService, ElasticService>();
             services.AddSingleton<IElasticClient>(
@@ -51,7 +56,8 @@ namespace Message
                 return elastic;
             });
             services.AddTransient<IValidator<MessageModel>, MessageModelValidation>();
-
+            services.AddMvc();
+            services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,17 +67,29 @@ namespace Message
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            app.UseHttpsRedirection();
-
+            else
+            {
+                app.UseHsts();
+            }
+            // app.Use(async (context, next) =>
+            //           {
+            //               context.Response.Headers.Add("X-XSS-Protection", "1; mode=block ");
+            //               context.Response.Headers.Add("Content-Security-Policy", "default-src 'self';");
+            //               context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
+            //               await next.Invoke();
+            //           });
             app.UseRouting();
+            app.UseCors(builder => builder.SetIsOriginAllowed(origin => true).AllowAnyMethod()
+             .AllowAnyHeader()
+             .AllowCredentials());
 
-            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<RabbitMqRepository>("/RabbitMqRepository");
             });
         }
     }
 }
+

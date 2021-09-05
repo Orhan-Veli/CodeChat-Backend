@@ -15,9 +15,11 @@ namespace Message.Controllers
     public class MessageController : ControllerBase
     {
         private readonly IElasticService _elasticService;
-        public MessageController(IElasticService elasticService)
+        private readonly IRabbitMqService _rabbit;
+        public MessageController(IElasticService elasticService, IRabbitMqService rabbit)
         {
             _elasticService = elasticService;
+            _rabbit = rabbit;
         }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] MessageModel model)
@@ -27,6 +29,8 @@ namespace Message.Controllers
                 return BadRequest("Model state is not valid");
             }
             var result = await _elasticService.Create(model);
+            await _rabbit.Consumer(model);
+            await _rabbit.Reciever();
             if (!result.Success)
             {
                 return BadRequest(result.Message);
