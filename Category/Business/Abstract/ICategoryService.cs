@@ -9,7 +9,7 @@ namespace Category.Business.Abstract
     public interface ICategoryService
     {
         Task<IResult<bool>> Create(List<CategoryDto> category);
-        Task<IResult<List<CategoryDto>>> GetAll();
+        Task<IResult<List<CategoryModel>>> GetAll();
         Task<IResult<bool>> Delete();
     }
 }

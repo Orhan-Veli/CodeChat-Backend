@@ -39,20 +39,17 @@ namespace Category.Business.Concrete
             Log.Logger.Information("CategoryCreated" + DateTime.Now);
             return new Result<bool>(result);
         }
-        public async Task<IResult<List<CategoryDto>>> GetAll()
+
+        public async Task<IResult<List<CategoryModel>>> GetAll()
         {
             var result = await _categoryRepository.GetAll();
             if (!result.Any())
             {
-                return new Result<List<CategoryDto>>(false, "There is no data");
+                return new Result<List<CategoryModel>>(false, "There is no data");
             }
-            var categoryDto = new List<CategoryDto>();
-            foreach (var item in result)
-            {
-                categoryDto.Add(new CategoryDto { Name = item.Name, Image = item.Image });
-            }
-            return new Result<List<CategoryDto>>(true, categoryDto);
+            return new Result<List<CategoryModel>>(true, result);
         }
+
         public async Task<IResult<bool>> Delete()
         {
             Log.Logger.Information("CategoryDeleted" + DateTime.Now);

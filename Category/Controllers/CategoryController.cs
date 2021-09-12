@@ -10,11 +10,13 @@ using Category.Business.Abstract;
 using Category.Business.Concrete;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation;
+using Microsoft.AspNetCore.Cors;
 
 namespace Category.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors("_myAllowSpecificOrigins")]
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
@@ -31,7 +33,7 @@ namespace Category.Controllers
             {
                 return BadRequest(result.Message);
             }
-            return Ok(result);
+            return Ok(result.Data);
         }
 
         [HttpPost]

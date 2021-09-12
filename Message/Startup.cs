@@ -26,9 +26,11 @@ namespace Message
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -36,6 +38,15 @@ namespace Message
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+        {
+            options.AddPolicy(name: MyAllowSpecificOrigins,
+                              builder =>
+                              {
+                                  builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed((host) => true);
+                              });
+        });
+
             services.AddControllers();
             services.AddSingleton(Configuration);
             services.AddSignalR();
@@ -57,7 +68,7 @@ namespace Message
             });
             services.AddTransient<IValidator<MessageModel>, MessageModelValidation>();
             services.AddMvc();
-            services.AddCors();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,17 +82,8 @@ namespace Message
             {
                 app.UseHsts();
             }
-            // app.Use(async (context, next) =>
-            //           {
-            //               context.Response.Headers.Add("X-XSS-Protection", "1; mode=block ");
-            //               context.Response.Headers.Add("Content-Security-Policy", "default-src 'self';");
-            //               context.Response.Headers.Add("X-Content-Type-Options", "nosniff");
-            //               await next.Invoke();
-            //           });
             app.UseRouting();
-            app.UseCors(builder => builder.SetIsOriginAllowed(origin => true).AllowAnyMethod()
-             .AllowAnyHeader()
-             .AllowCredentials());
+            app.UseCors(MyAllowSpecificOrigins);
 
 
             app.UseEndpoints(endpoints =>

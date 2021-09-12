@@ -24,6 +24,7 @@ namespace Category
 {
     public class Startup
     {
+        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
         public Startup(IConfiguration configuration)
         {
             _configuration = configuration;
@@ -34,7 +35,14 @@ namespace Category
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(options =>
+                {
+                    options.AddPolicy(name: MyAllowSpecificOrigins,
+                                      builder =>
+                                      {
+                                          builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed((host) => true);
+                                      });
+                });
             services.AddControllers();
             services.AddOptions();
             services.AddSingleton<IRepository, CategoryRepository>();
@@ -49,7 +57,7 @@ namespace Category
             {
                 options.Configuration = _configuration["rediscache:Host"];
                 options.InstanceName = _configuration["rediscache:instancename"];
-            });          
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -63,7 +71,7 @@ namespace Category
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors(MyAllowSpecificOrigins);
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
