@@ -14,6 +14,7 @@ namespace Message.Extensions
             .Keyword(T => T.Name(N => N.UserId))
             .Text(T => T.Name(N => N.Text))
             .Text(T => T.Name(N => N.UserName))
+            .Text(T=> T.Name(N => N.CreatedOn))
             ));
         }
     }

@@ -8,10 +8,12 @@ using Message.Business.Concrete;
 using Message.Business.Abstract;
 using Message.Dal.Model;
 using Serilog;
+using Microsoft.AspNetCore.Cors;
 namespace Message.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [EnableCors("_myAllowSpecificOrigins")]
     public class MessageController : ControllerBase
     {
         private readonly IElasticService _elasticService;
@@ -49,10 +51,10 @@ namespace Message.Controllers
             return Ok(result.Data);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
+        [HttpGet("getall/{id}")]
+        public async Task<IActionResult> GetAll(Guid id)
         {
-            var result = await _elasticService.GetAll();
+            var result = await _elasticService.GetAll(id);
             if (!result.Success || !result.Data.Any())
             {
                 return BadRequest(result.Message);

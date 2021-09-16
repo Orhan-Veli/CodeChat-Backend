@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using Message.Utilities.Concrete;
 using Message.Dal.Model;
 using Message.Business.Abstract;
 using Serilog;
+using System;
 
 namespace Message.Business.Concrete
 {
@@ -15,12 +17,11 @@ namespace Message.Business.Concrete
     {
         private readonly IEntityRepository<MessageModel> _elasticRepository;
         public ElasticService(IEntityRepository<MessageModel> elasticRepository)
-        {
+        { 
             _elasticRepository = elasticRepository;
         }
         public async Task<IResult<bool>> Create(MessageModel model)
-        {
-            model.Id = Guid.NewGuid();
+        {           
             var result = await _elasticRepository.Create(model);
             if (!result)
             {
@@ -44,14 +45,19 @@ namespace Message.Business.Concrete
             }
             return new Result<MessageModel>(true, result);
         }
-        public async Task<IResult<List<MessageModel>>> GetAll()
+        public async Task<IResult<List<MessageModel>>> GetAll(Guid id)
         {
+            if(id == Guid.Empty)
+            {
+                 return new Result<List<MessageModel>>(false, "Id is empty.");
+            }
             var result = await _elasticRepository.GetAll();
             if (result == null)
             {
                 Log.Logger.Information("List of data is null." + DateTime.Now);
                 return new Result<List<MessageModel>>(false, "List of data is null.");
             }
+            result = result.Where(x=>x.CategoryId == id).ToList();            
             return new Result<List<MessageModel>>(true, result);
         }
         public async Task<IResult<MessageModel>> Update(MessageModel model)

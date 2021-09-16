@@ -10,7 +10,7 @@ namespace Message.Business.Abstract
     {
         Task<IResult<bool>> Create(MessageModel model);
         Task<IResult<MessageModel>> Get(Guid id);
-        Task<IResult<List<MessageModel>>> GetAll();
+        Task<IResult<List<MessageModel>>> GetAll(Guid id);
         Task<IResult<MessageModel>> Update(MessageModel model);
         Task<IResult<bool>> Delete(Guid id);
     }

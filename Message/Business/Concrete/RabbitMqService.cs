@@ -2,6 +2,8 @@ using Message.Business.Abstract;
 using System.Threading.Tasks;
 using Message.Dal.Model;
 using Message.Dal.Abstract;
+using System;
+using System.Globalization;
 namespace Message.Business.Concrete
 {
     public class RabbitMqService : IRabbitMqService
@@ -12,7 +14,7 @@ namespace Message.Business.Concrete
             _rabbit = rabbit;
         }
         public async Task Consumer(MessageModel model)
-        {
+        {          
             await _rabbit.Consumer(model);
         }
         public async Task Reciever()

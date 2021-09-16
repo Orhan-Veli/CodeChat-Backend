@@ -34,7 +34,11 @@ namespace Message.Dal.Concrete
         }
         public async Task<List<MessageModel>> GetAll()
         {
-            var response = await _elasticClient.SearchAsync<MessageModel>(x => x.Index(_indexName).Scroll("1m"));
+            var response = await _elasticClient.SearchAsync<MessageModel>(x => 
+            x.Index(_indexName)
+            .From(0)
+            .Size(1000)            
+            ); 
             return response.Documents.ToList();
         }
         public async Task<bool> Delete(Guid id)
