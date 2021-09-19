@@ -19,6 +19,7 @@ using Message.Business.Abstract;
 using Nest;
 using Message.Extensions;
 using Message.Validation;
+using Message.Dal.SignalRHub;
 using FluentValidation;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.Cors;
@@ -43,7 +44,11 @@ namespace Message
             options.AddPolicy(name: MyAllowSpecificOrigins,
                               builder =>
                               {
-                                  builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().SetIsOriginAllowed((host) => true);
+                                  builder.WithOrigins("http://localhost:8081")
+                                  .AllowAnyMethod()
+                                  .AllowCredentials()
+                                  .AllowAnyHeader()
+                                  .SetIsOriginAllowed((host) => true);
                               });
         });
 
@@ -51,6 +56,7 @@ namespace Message
             services.AddSingleton(Configuration);
             services.AddSignalR();
             services.AddSingleton<IRabbitMqRepository, RabbitMqRepository>();
+            services.AddSingleton<ChatHub>();
             services.AddSingleton<IRabbitMqService, RabbitMqService>();
             services.AddSingleton<IEntityRepository<MessageModel>, ElasticRepository>();
             services.AddSingleton<IElasticService, ElasticService>();
@@ -83,13 +89,12 @@ namespace Message
                 app.UseHsts();
             }
             app.UseRouting();
-            app.UseCors(MyAllowSpecificOrigins);
-
+            app.UseCors(MyAllowSpecificOrigins);        
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapHub<RabbitMqRepository>("/RabbitMqRepository");
+                endpoints.MapHub<ChatHub>("/ChatHub");
             });
         }
     }

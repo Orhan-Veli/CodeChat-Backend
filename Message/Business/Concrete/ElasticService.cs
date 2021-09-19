@@ -9,7 +9,6 @@ using Message.Utilities.Concrete;
 using Message.Dal.Model;
 using Message.Business.Abstract;
 using Serilog;
-using System;
 
 namespace Message.Business.Concrete
 {

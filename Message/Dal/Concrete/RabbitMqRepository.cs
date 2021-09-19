@@ -8,16 +8,21 @@ using Message.Dal.Abstract;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Newtonsoft.Json;
-using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
+using Message.Dal.SignalRHub;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.AspNetCore.SignalR.Client;
 namespace Message.Dal.Concrete
 {
-    public class RabbitMqRepository : Hub, IRabbitMqRepository
+    public class RabbitMqRepository : IRabbitMqRepository
     {
-        private readonly IConfiguration _configuration;
-        public RabbitMqRepository(IConfiguration configuration)
+         private readonly IHubContext<ChatHub> _chatHubs;
+        private readonly IConfiguration _configuration;      
+        public RabbitMqRepository(IConfiguration configuration,IHubContext<ChatHub> chatHub)
         {
             _configuration = configuration;
+            _chatHubs = chatHub;
+            
         }
         public async Task Consumer(MessageModel model)
         {
@@ -33,10 +38,10 @@ namespace Message.Dal.Concrete
             using (IModel channel = connection.CreateModel())
             {
                 channel.QueueDeclare(
-                queue: "Message",
+                queue: "CodeChat-Messages",
                 durable: false,
-                exclusive: true,
-                autoDelete: true,
+                exclusive: false,
+                autoDelete: false,
                 arguments: null
                 );
 
@@ -46,12 +51,14 @@ namespace Message.Dal.Concrete
                 channel.BasicPublish
                 (
                     exchange: "",
-                    routingKey: "Message",
+                    routingKey: "CodeChat-Messages",
                     basicProperties: null,
                     body: body
                 );
             }
         }
+      
+
         public async Task Reciever()
         {
             var factory = new ConnectionFactory();
@@ -63,30 +70,38 @@ namespace Message.Dal.Concrete
             using (IConnection connection = factory.CreateConnection())
             using (IModel channel = connection.CreateModel())
             {
+                try
+                {                
                 channel.QueueDeclare(
-                queue: "Message",
-                durable: true,
-                exclusive: true,
-                autoDelete: true,
+                queue: "CodeChat-Messages",
+                durable: false,
+                exclusive: false,
+                autoDelete: false,
                 arguments: null
                 );
-
-                var consumer = new EventingBasicConsumer(channel);
-                consumer.Received += (model, ea) =>
+                var _chatHub= new ChatHub(_chatHubs);
+                var consumer = new EventingBasicConsumer(channel);               
+                consumer.Received += async (model, ea) =>
                 {
-                    var body = ea.Body.Span;
-                    var message = Encoding.UTF8.GetString(body);
-                    var messageModel = JsonConvert.DeserializeObject<MessageModel>(message);
-                    Clients.All.SendAsync("ReceiveMessage", messageModel);
+                    var body = ea.Body.ToArray();
+                    var message = Encoding.UTF8.GetString(body);                     
+                   //var messageModel = JsonConvert.DeserializeObject<string>(message);
+                  await _chatHub.SendMessage(message);
                 };
+                
                 channel.BasicConsume
                 (
-                    queue: "Message",
+                    queue: "CodeChat-Messages",
                     autoAck: true,
                     consumer: consumer
                 );
+                }
+                 catch (Exception ex)
+                {
+                    
+                }
+               
             }
         }
-
     }
 }
