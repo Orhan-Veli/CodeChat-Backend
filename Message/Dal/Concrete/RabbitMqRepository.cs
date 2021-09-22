@@ -16,7 +16,7 @@ namespace Message.Dal.Concrete
 {
     public class RabbitMqRepository : IRabbitMqRepository
     {
-         private readonly IHubContext<ChatHub> _chatHubs;
+        private readonly IHubContext<ChatHub> _chatHubs;
         private readonly IConfiguration _configuration;      
         public RabbitMqRepository(IConfiguration configuration,IHubContext<ChatHub> chatHub)
         {
@@ -85,8 +85,8 @@ namespace Message.Dal.Concrete
                 {
                     var body = ea.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);                     
-                   //var messageModel = JsonConvert.DeserializeObject<string>(message);
-                  await _chatHub.SendMessage(message);
+                    var messageModel = JsonConvert.DeserializeObject<MessageModel>(message);
+                    await _chatHub.SendMessage(messageModel.CategoryId,message);
                 };
                 
                 channel.BasicConsume

@@ -12,9 +12,9 @@ namespace Message.Dal.SignalRHub
         {
             _chatHub = chatHub;
         }
-        public async Task SendMessage(string message)
+        public async Task SendMessage(Guid categoryId,string message)
         {            
-            await _chatHub.Clients.All.SendAsync("ReceiveMessage",message);
+            await _chatHub.Clients.All.SendAsync(categoryId.ToString(),message);
         }       
     }
 }

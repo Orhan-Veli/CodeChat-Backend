@@ -45,7 +45,7 @@ namespace Category.Business.Concrete
             var result = await _categoryRepository.GetAll();
             if (!result.Any())
             {
-                return new Result<List<CategoryModel>>(false, "There is no data");
+                return new Result<List<CategoryModel>>(true,new List<CategoryModel>());
             }
             return new Result<List<CategoryModel>>(true, result);
         }

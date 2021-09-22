@@ -54,7 +54,7 @@ namespace Message.Business.Concrete
             if (result == null)
             {
                 Log.Logger.Information("List of data is null." + DateTime.Now);
-                return new Result<List<MessageModel>>(false, "List of data is null.");
+                return new Result<List<MessageModel>>(true,new List<MessageModel>());
             }
             result = result.Where(x=>x.CategoryId == id).ToList();            
             return new Result<List<MessageModel>>(true, result);
