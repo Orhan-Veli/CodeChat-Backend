@@ -16,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Net.Mail;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Web;
 using System.Security.Claims;
 using Microsoft.Extensions.Configuration;
@@ -56,11 +57,14 @@ namespace Identity.Business.Concrete
                 if(result.Succeeded)
                 {
                     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-                    var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);             
+                    var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);   
+                    var claims = new Claim[] {new Claim("id",user.Id.ToString()),new Claim("Name",user.UserName.ToString())};
+
                     var securityToken = new JwtSecurityToken(
-                        _configuration["Jwt:Issuer"],
+                        _configuration["Jwt:Issuer"], 
                         null,
-                        expires:DateTime.Now.AddHours(2),
+                        claims,                      
+                        expires:DateTime.Now.AddHours(3),
                         signingCredentials:credentials);
                     var token = new JwtSecurityTokenHandler().WriteToken(securityToken);    
                     return new Result<bool>(result.Succeeded, token);

@@ -9,6 +9,8 @@ using Message.Business.Abstract;
 using Message.Dal.Model;
 using Serilog;
 using Microsoft.AspNetCore.Cors;
+using System.Net.Http.Headers;
+using System.IdentityModel.Tokens.Jwt;
 namespace Message.Controllers
 {
     [ApiController]
@@ -24,11 +26,19 @@ namespace Message.Controllers
             _rabbit = rabbit;
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] MessageModel model)
+        public async Task<IActionResult> Create([FromBody] MessageModel model, [FromHeader] string authorization)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || String.IsNullOrEmpty(authorization))
             {
                 return BadRequest("Model state is not valid");
+            }
+            if(AuthenticationHeaderValue.TryParse(authorization,out var headerVal))
+            {
+                var jwtToken = headerVal.Parameter;
+                var handler = new JwtSecurityTokenHandler();
+                var val = handler.ReadJwtToken(jwtToken);
+                model.UserName = val.Claims.FirstOrDefault(x=> x.Type=="Name").Value;
+                model.UserId = Guid.Parse(val.Claims.FirstOrDefault(c=>c.Type== "id").Value);                
             }
             var result = await _elasticService.Create(model);
             await _rabbit.Consumer(model);

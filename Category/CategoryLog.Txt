@@ -11302,3 +11302,107 @@ StackExchange.Redis.RedisConnectionException: It was not possible to connect to 
 2021-09-23 23:45:45.187 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllModels (Category) in 15.0123ms
 2021-09-23 23:45:45.187 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
 2021-09-23 23:45:45.187 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 16.2172ms
+2021-10-03 19:05:17.173 +03:00 [INF] Now listening on: http://localhost:7000
+2021-10-03 19:05:17.185 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-10-03 19:05:17.185 +03:00 [INF] Hosting environment: Development
+2021-10-03 19:05:17.185 +03:00 [INF] Content root path: C:\Users\orhan\Desktop\CodeChat\CodeChat-Backend\Category
+2021-10-03 19:05:28.919 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-03 19:05:28.928 +03:00 [WRN] Failed to determine the https port for redirect.
+2021-10-03 19:05:28.980 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:05:28.998 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 83.3807ms
+2021-10-03 19:05:29.012 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-03 19:05:29.013 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:05:29.020 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:05:29.062 +03:00 [INF] Route matched with {action = "GetAllModels", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetAllModels() on controller Category.Controllers.CategoryController (Category).
+2021-10-03 19:05:29.705 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-10-03 19:05:29.755 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllModels (Category) in 687.903ms
+2021-10-03 19:05:29.756 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:05:29.758 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 745.4277ms
+2021-10-03 19:06:51.179 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-03 19:06:51.180 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:06:51.180 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.6036ms
+2021-10-03 19:06:51.187 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-03 19:06:51.187 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:06:51.188 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:06:51.188 +03:00 [INF] Route matched with {action = "GetAllModels", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetAllModels() on controller Category.Controllers.CategoryController (Category).
+2021-10-03 19:06:51.194 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-10-03 19:06:51.203 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllModels (Category) in 14.705ms
+2021-10-03 19:06:51.203 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:06:51.203 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 15.6640ms
+2021-10-03 19:08:40.378 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-03 19:08:40.378 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:08:40.379 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.4089ms
+2021-10-03 19:08:40.406 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-03 19:08:40.406 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:08:40.410 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:08:40.411 +03:00 [INF] Route matched with {action = "GetAllModels", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetAllModels() on controller Category.Controllers.CategoryController (Category).
+2021-10-03 19:08:40.465 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-10-03 19:08:40.465 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllModels (Category) in 53.9226ms
+2021-10-03 19:08:40.465 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:08:40.465 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 59.6983ms
+2021-10-03 19:10:00.741 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-03 19:10:00.741 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:10:00.741 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 1.9372ms
+2021-10-03 19:10:00.818 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-03 19:10:00.818 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:10:00.818 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:10:00.820 +03:00 [INF] Route matched with {action = "GetAllModels", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetAllModels() on controller Category.Controllers.CategoryController (Category).
+2021-10-03 19:10:00.831 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-10-03 19:10:00.831 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllModels (Category) in 11.5083ms
+2021-10-03 19:10:00.831 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:10:00.832 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 13.5005ms
+2021-10-03 19:12:12.010 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-03 19:12:12.010 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:12:12.010 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.3542ms
+2021-10-03 19:12:12.114 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-03 19:12:12.114 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:12:12.114 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:12:12.115 +03:00 [INF] Route matched with {action = "GetAllModels", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetAllModels() on controller Category.Controllers.CategoryController (Category).
+2021-10-03 19:12:12.302 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-10-03 19:12:12.302 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllModels (Category) in 187.5123ms
+2021-10-03 19:12:12.303 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:12:12.303 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 188.6569ms
+2021-10-03 19:13:27.077 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-03 19:13:27.077 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:13:27.077 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.2780ms
+2021-10-03 19:13:27.087 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-03 19:13:27.087 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:13:27.087 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:13:27.087 +03:00 [INF] Route matched with {action = "GetAllModels", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetAllModels() on controller Category.Controllers.CategoryController (Category).
+2021-10-03 19:13:27.093 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-10-03 19:13:27.093 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllModels (Category) in 6.4173ms
+2021-10-03 19:13:27.094 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:13:27.094 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 7.0250ms
+2021-10-03 19:15:38.999 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-03 19:15:38.999 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:15:38.999 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.5070ms
+2021-10-03 19:15:39.001 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-03 19:15:39.001 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:15:39.001 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:15:39.001 +03:00 [INF] Route matched with {action = "GetAllModels", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetAllModels() on controller Category.Controllers.CategoryController (Category).
+2021-10-03 19:15:39.035 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-10-03 19:15:39.035 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllModels (Category) in 33.3662ms
+2021-10-03 19:15:39.035 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:15:39.035 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 34.0441ms
+2021-10-03 19:16:29.409 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-03 19:16:29.409 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:16:29.409 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.3560ms
+2021-10-03 19:16:29.441 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-03 19:16:29.442 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:16:29.442 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:16:29.442 +03:00 [INF] Route matched with {action = "GetAllModels", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetAllModels() on controller Category.Controllers.CategoryController (Category).
+2021-10-03 19:16:29.465 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-10-03 19:16:29.466 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllModels (Category) in 23.465ms
+2021-10-03 19:16:29.466 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:16:29.466 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 24.3453ms
+2021-10-03 19:18:01.437 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-03 19:18:01.438 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:18:01.438 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 1.1657ms
+2021-10-03 19:18:01.494 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-03 19:18:01.495 +03:00 [INF] CORS policy execution successful.
+2021-10-03 19:18:01.495 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:18:01.495 +03:00 [INF] Route matched with {action = "GetAllModels", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetAllModels() on controller Category.Controllers.CategoryController (Category).
+2021-10-03 19:18:01.507 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2021-10-03 19:18:01.508 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllModels (Category) in 12.4668ms
+2021-10-03 19:18:01.508 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllModels (Category)'
+2021-10-03 19:18:01.508 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 14.3175ms

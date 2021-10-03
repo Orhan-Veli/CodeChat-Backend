@@ -13,7 +13,7 @@ namespace Identity.Business.Abstract
         Task<IResult<bool>> CheckUser(string token);
 
         Task LogOutUser();
-
+        
         Task<IResult<bool>> UpdatePassword(string password,string userId,string token);
     }
 }
