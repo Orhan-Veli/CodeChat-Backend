@@ -7,9 +7,11 @@ namespace Message.Validation
     {
         public MessageModelValidation()
         {
-            RuleFor(x => x.Text).NotEmpty().NotNull();
-            RuleFor(x => x.CategoryId).NotEqual(Guid.Empty);
-            RuleFor(x => x.CategoryName).NotNull().NotEmpty();
+            RuleFor(x => x.Text).NotEmpty().NotNull().WithMessage("Text is empty.");
+            RuleFor(x => x.CategoryId).NotEqual(Guid.Empty).WithMessage("CategoryId is empty.");
+            RuleFor(x => x.CategoryName).NotNull().NotEmpty().WithMessage("CategoryName is empty.");
+            RuleFor(x=>x.UserId).NotEqual(Guid.Empty).WithMessage("UserId is empty.");
+            RuleFor(x=> x.UserName).NotNull().NotEmpty().WithMessage("UserName is empty.");
         }
     }
 }
