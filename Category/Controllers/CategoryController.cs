@@ -39,7 +39,7 @@ namespace Category.Controllers
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] List<CategoryDto> category)
         {
-            if (!ModelState.IsValid)
+            if (!category.Any())
             {
                 return BadRequest();
             }

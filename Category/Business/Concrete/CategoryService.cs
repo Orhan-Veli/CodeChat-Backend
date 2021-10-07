@@ -24,6 +24,10 @@ namespace Category.Business.Concrete
         }
         public async Task<IResult<bool>> Create(List<CategoryDto> category)
         {
+            if(category.Any(x=>x.Image == null && x.Name == null))
+            {
+                return new Result<bool>(false);
+            }
             List<CategoryModel> categoryModel = new List<CategoryModel>();
             foreach (var item in category)
             {

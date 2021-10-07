@@ -10,8 +10,12 @@
     <PackageReference Include="coverlet.collector" Version="3.0.2"/>
     <PackageReference Include="Moq" Version="4.16.1"/>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    <PackageReference Include="FluentValidation" Version="10.3.3"/>
+    <PackageReference Include="FluentValidation.Validators.UnitTestExtension" Version="1.10.0.2"/>
+    <PackageReference Include="NEST" Version="7.15.0"/>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Message\Message.csproj"/>
+    <ProjectReference Include="..\Category\Category.csproj"/>
   </ItemGroup>
 </Project>
