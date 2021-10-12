@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <GenerateProgramFile>false</GenerateProgramFile>
-    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>    
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3"/>
@@ -21,7 +21,11 @@
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0"/>
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.2.0"/>
     <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="5.0.0"/>
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.19"/>      
-     <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.19"/>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2"/>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.13.1"/>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.0"/>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0"/>
   </ItemGroup>
 </Project>

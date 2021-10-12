@@ -22,6 +22,7 @@ using Message.Validation;
 using Message.Dal.SignalRHub;
 using FluentValidation;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Cors;
 namespace Message
 {
@@ -50,25 +51,27 @@ namespace Message
                                   .AllowAnyHeader()
                                   .SetIsOriginAllowed((host) => true);
                               });
-        });
-
+        });    
             services.AddControllers();
-            services.AddSingleton(Configuration);
+            services.AddSingleton(Configuration);            
+            services.AddHttpContextAccessor();         
             services.AddSignalR();
-            services.AddSingleton<IRabbitMqRepository, RabbitMqRepository>();
-            services.AddSingleton<ChatHub>();
+            services.AddSingleton<ChatHub>();   
+            services.AddSingleton<IRabbitMqRepository, RabbitMqRepository>();                               
             services.AddSingleton<IRabbitMqService, RabbitMqService>();
-            services.AddSingleton<IEntityRepository<MessageModel>, ElasticRepository>();
+            services.AddSingleton<IEntityRepository<MessageModel>, ElasticRepository<MessageModel>>();
+            services.AddSingleton<IEntityRepository<OnlineUserModel>, ElasticRepository<OnlineUserModel>>();
             services.AddSingleton<IElasticService, ElasticService>();
             services.AddSingleton<IElasticClient>(
             p =>
             {
                 var elastic = new ElasticClient(new ConnectionSettings(new Uri(Configuration["elasticsearchserver:Host"]))
                 .BasicAuthentication(Configuration["elasticsearchserver:Username"], Configuration["elasticsearchserver:Password"]));
-                var any = elastic.Indices.Exists(Configuration["elasticsearchserver:indexName"].ToString());
+                var any = elastic.Indices.Exists(Configuration["elasticsearchserver:Message"].ToString());
                 if (!any.Exists)
                 {
-                    elastic.Indices.Create(Configuration["elasticsearchserver:indexName"].ToString(), ci => ci.Index(Configuration["elasticsearchserver:indexName"].ToString()).MessageMapping().Settings(s => s.NumberOfShards(3).NumberOfReplicas(1)));
+                    elastic.Indices.Create(Configuration["elasticsearchserver:Message"].ToString(), ci => ci.Index(Configuration["elasticsearchserver:Message"].ToString()).MessageMapping().Settings(s => s.NumberOfShards(3).NumberOfReplicas(1)));
+                    elastic.Indices.Create(Configuration["elasticsearchserver:User"].ToString(), ci => ci.Index(Configuration["elasticsearchserver:User"].ToString()).MessageUserMapping().Settings(s => s.NumberOfShards(1).NumberOfReplicas(1)));
                 }
                 return elastic;
             });
@@ -88,6 +91,7 @@ namespace Message
             {
                 app.UseHsts();
             }
+            //var context = app.ApplicationServices.GetService<UserDbContext>();
             app.UseRouting();
             app.UseCors(MyAllowSpecificOrigins);        
 

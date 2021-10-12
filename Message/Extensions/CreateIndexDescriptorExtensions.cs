@@ -17,5 +17,13 @@ namespace Message.Extensions
             .Text(T=> T.Name(N => N.CreatedOn))
             ));
         }
+        public static CreateIndexDescriptor MessageUserMapping(this CreateIndexDescriptor descriptor)
+        {
+            return descriptor.Map<OnlineUserModel>
+            (M => M.Properties
+            (T => T.Text(K => K.Name(N => N.Id))
+            .Text(T => T.Name(N => N.UserName))            
+            ));
+        }
     }
 }

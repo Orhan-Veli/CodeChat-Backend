@@ -4,12 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 namespace Message.Dal.Abstract
 {
-    public interface IEntityRepository<T>
+    public interface IEntityRepository<T> : IElasticRepository
     {
-        Task<bool> Create(T model);
-        Task<T> Update(T model);
-        Task<T> Get(Guid id);
-        Task<List<T>> GetAll();
-        Task<bool> Delete(Guid id);
+        Task<bool> Create(Guid id,T model,string _indexName);
+        Task<T> Update(Guid id,T model,string _indexName);
+        Task<T> Get(Guid id,string _indexName);
+        Task<List<T>> GetAll(string _indexName);
+        Task<bool> Delete(Guid id,string _indexName);
     }
 }

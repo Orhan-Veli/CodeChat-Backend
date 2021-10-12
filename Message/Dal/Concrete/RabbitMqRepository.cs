@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +13,21 @@ using Microsoft.Extensions.Configuration;
 using Message.Dal.SignalRHub;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SignalR.Client;
+using System.Runtime.Serialization.Formatters.Binary;
 namespace Message.Dal.Concrete
 {
     public class RabbitMqRepository : IRabbitMqRepository
     {
         private readonly IHubContext<ChatHub> _chatHubs;
         private readonly IConfiguration _configuration;      
-        public RabbitMqRepository(IConfiguration configuration,IHubContext<ChatHub> chatHub)
+        private readonly IEntityRepository<OnlineUserModel> _elasticRepository; 
+        private string _indexName;
+        public RabbitMqRepository(IConfiguration configuration,IHubContext<ChatHub> chatHub,IEntityRepository<OnlineUserModel> elasticRepository)
         {
             _configuration = configuration;
-            _chatHubs = chatHub;
-            
+            _indexName = configuration["elasticsearchserver:User"].ToString();
+            _elasticRepository = elasticRepository;
+            _chatHubs = chatHub;           
         }
         public async Task Consumer(MessageModel model)
         {
@@ -44,9 +49,10 @@ namespace Message.Dal.Concrete
                 autoDelete: false,
                 arguments: null
                 );
-
-                var message = JsonConvert.SerializeObject(model);
+                              
+                var message = JsonConvert.SerializeObject(model);                          
                 var body = Encoding.UTF8.GetBytes(message);
+               
 
                 channel.BasicPublish
                 (
@@ -79,14 +85,18 @@ namespace Message.Dal.Concrete
                 autoDelete: false,
                 arguments: null
                 );
-                var _chatHub= new ChatHub(_chatHubs);
+                var _chatHub= new ChatHub(_chatHubs,_elasticRepository,_configuration);
                 var consumer = new EventingBasicConsumer(channel);               
                 consumer.Received += async (model, ea) =>
                 {
                     var body = ea.Body.ToArray();
-                    var message = Encoding.UTF8.GetString(body);                     
-                    var messageModel = JsonConvert.DeserializeObject<MessageModel>(message);
-                    await _chatHub.SendMessage(messageModel.CategoryId,message);
+                    var message = Encoding.UTF8.GetString(body);                      
+                    var messageModel = JsonConvert.DeserializeObject<MessageModel>(message); 
+                    var users = _elasticRepository.GetAll(_indexName).Result;
+                    var rabbitMqModel = new RabbitMqModel();
+                    rabbitMqModel.OnlineUserModels = users;
+                    rabbitMqModel.MessageModels = messageModel;                                              
+                    await _chatHub.SendMessage(messageModel.CategoryId, rabbitMqModel);
                 };
                 
                 channel.BasicConsume
@@ -103,5 +113,6 @@ namespace Message.Dal.Concrete
                
             }
         }
+        
     }
 }

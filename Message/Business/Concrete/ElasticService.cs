@@ -8,6 +8,7 @@ using Message.Utilities.Abstract;
 using Message.Utilities.Concrete;
 using Message.Dal.Model;
 using Message.Business.Abstract;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 
 namespace Message.Business.Concrete
@@ -15,13 +16,15 @@ namespace Message.Business.Concrete
     public class ElasticService : IElasticService
     {
         private readonly IEntityRepository<MessageModel> _elasticRepository;
-        public ElasticService(IEntityRepository<MessageModel> elasticRepository)
+        private readonly string _indexName;
+        public ElasticService(IConfiguration configuration,IEntityRepository<MessageModel> elasticRepository)
         { 
             _elasticRepository = elasticRepository;
+            _indexName = configuration["elasticsearchserver:Message"].ToString();
         }
         public async Task<IResult<bool>> Create(MessageModel model)
         {           
-            var result = await _elasticRepository.Create(model);
+            var result = await _elasticRepository.Create(model.Id,model,_indexName);
             if (!result)
             {
                 Log.Logger.Information("Model could not be created." + DateTime.Now);
@@ -37,7 +40,7 @@ namespace Message.Business.Concrete
                 Log.Logger.Information("Id is empty." + DateTime.Now);
                 return new Result<MessageModel>(false, "Id is empty.");
             }
-            var result = await _elasticRepository.Get(id);
+            var result = await _elasticRepository.Get(id,_indexName);
             if (result == null)
             {
                 return new Result<MessageModel>(false, "No data found.");
@@ -50,7 +53,7 @@ namespace Message.Business.Concrete
             {
                  return new Result<List<MessageModel>>(false, "Id is empty.");
             }
-            var result = await _elasticRepository.GetAll();
+            var result = await _elasticRepository.GetAll(_indexName);
             if (result == null)
             {
                 Log.Logger.Information("List of data is null." + DateTime.Now);
@@ -61,7 +64,7 @@ namespace Message.Business.Concrete
         }
         public async Task<IResult<MessageModel>> Update(MessageModel model)
         {
-            var result = await _elasticRepository.Update(model);
+            var result = await _elasticRepository.Update(model.Id,model,_indexName);
             if (result == null)
             {
                 Log.Logger.Information("Update could not be done." + DateTime.Now);
@@ -77,7 +80,7 @@ namespace Message.Business.Concrete
                 Log.Logger.Information("Id is empty." + DateTime.Now);
                 return new Result<bool>(false, "Id is empty.");
             }
-            var result = await _elasticRepository.Delete(id);
+            var result = await _elasticRepository.Delete(id,_indexName);
             if (!result)
             {
                 Log.Logger.Information("Delete could not be done." + DateTime.Now);

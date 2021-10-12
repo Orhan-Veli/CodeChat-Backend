@@ -22,7 +22,6 @@ using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Cors;
 using FluentValidation;
 using Identity.Validations;
-using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -82,7 +81,8 @@ namespace Identity
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
             });
-
+            services.AddSignalR();
+            
             // services.ConfigureApplicationCookie(x=>
             // {
             //     x.LoginPath = new PathString("/Home");                
@@ -118,7 +118,6 @@ namespace Identity
 
             app.UseAuthentication();
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
