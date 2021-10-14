@@ -54,7 +54,7 @@ namespace Message.Controllers
         public async Task<IActionResult> Get(Guid id)
         {
             var result = await _elasticService.Get(id);
-            if (!result.Success || result.Data == null)
+            if (!result.Success)
             {
                 return BadRequest(result.Message);
             }
@@ -65,7 +65,7 @@ namespace Message.Controllers
         public async Task<IActionResult> GetAll(Guid id)
         {
             var result = await _elasticService.GetAll(id);
-            if (!result.Success || !result.Data.Any())
+            if (!result.Success)
             {
                 return BadRequest(result.Message);
             }
@@ -80,7 +80,7 @@ namespace Message.Controllers
                 return BadRequest("Model state is not valid");
             }
             var result = await _elasticService.Update(model);
-            if (!result.Success || result.Data == null)
+            if (result == null || !result.Success || result.Data == null)
             {
                 return BadRequest(result.Message);
             }
@@ -97,7 +97,6 @@ namespace Message.Controllers
             }
             return NoContent();
         }
-
 
     }
 }

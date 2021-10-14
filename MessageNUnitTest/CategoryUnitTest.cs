@@ -22,7 +22,6 @@ namespace MessageNUnitTest
     {          
         private CategoryDtoValidation _categoryDtoValidation;
         private CategoryDto _categoryDtoTrue;
-
         private CategoryDto _categoryDtoFalse;
         [SetUp]
         public void Setup()
@@ -43,8 +42,7 @@ namespace MessageNUnitTest
         public async Task CategoryCreateReturnTrue()
         {
             var categoryDtoList = new List<CategoryDto>();
-            categoryDtoList.Add(_categoryDtoTrue); 
-            var mock1 = new Mock<IRepository>();          
+            categoryDtoList.Add(_categoryDtoTrue);       
             var mock = new Mock<ICategoryService>();
             mock.Setup(x=> x.Create(categoryDtoList).Result.Success).Returns(true);
             var controller = new CategoryController(mock.Object);
@@ -55,8 +53,7 @@ namespace MessageNUnitTest
         [Test]
         public async Task CategoryCreateReturnFalse()
         {
-            var categoryDtoList = new List<CategoryDto>();
-            var mock1 = new Mock<IRepository>();          
+            var categoryDtoList = new List<CategoryDto>();   
             var mock = new Mock<ICategoryService>();
             mock.Setup(x=> x.Create(categoryDtoList).Result.Success).Returns(false);
             var controller = new CategoryController(mock.Object);

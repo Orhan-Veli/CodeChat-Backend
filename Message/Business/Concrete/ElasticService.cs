@@ -51,7 +51,7 @@ namespace Message.Business.Concrete
         {
             if(id == Guid.Empty)
             {
-                 return new Result<List<MessageModel>>(false, "Id is empty.");
+                return new Result<List<MessageModel>>(false, "Id is empty.");
             }
             var result = await _elasticRepository.GetAll(_indexName);
             if (result == null)
