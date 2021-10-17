@@ -8,8 +8,10 @@ namespace Category.Business.Abstract
 {
     public interface ICategoryService
     {
-        Task<IResult<bool>> Create(List<CategoryDto> category);
-        Task<IResult<List<CategoryModel>>> GetAll();
-        Task<IResult<bool>> Delete();
+        Task<IResult<bool>> BulkCreateAsync(List<CategoryDto> categories);
+        Task<IResult<List<CategoryModel>>> GetAllAsync();
+        Task<IResult<bool>> BulkDeleteAsync();
+        Task<IResult<CategoryDto>> CreateAsync(CategoryDto category);
+        Task<IResult<bool>> DeleteAsync(Guid id);
     }
 }

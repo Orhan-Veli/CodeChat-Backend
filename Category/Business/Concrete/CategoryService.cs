@@ -17,19 +17,19 @@ namespace Category.Business.Concrete
 {
     public class CategoryService : ICategoryService
     {
-        private readonly IRepository _categoryRepository;
-        public CategoryService(IRepository categoryRepository)
+        private readonly ICategoryRepository _categoryRepository;
+        public CategoryService(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }
-        public async Task<IResult<bool>> Create(List<CategoryDto> category)
+        public async Task<IResult<bool>> BulkCreateAsync(List<CategoryDto> categories)
         {
-            if(category.Any(x=>x.Image == null && x.Name == null))
+            if(categories.Any(x=>x.Image == null && x.Name == null))
             {
-                return new Result<bool>(false);
+                return new Result<bool>(false,"Model is not usefull",HttpStatusCode.BadRequest);
             }
             List<CategoryModel> categoryModel = new List<CategoryModel>();
-            foreach (var item in category)
+            foreach (var item in categories)
             {
                 categoryModel.Add(new CategoryModel
                 {
@@ -39,26 +39,46 @@ namespace Category.Business.Concrete
                     CreatedOn = DateTime.Now.ToString()
                 });
             }
-            var result = await _categoryRepository.Create(categoryModel);
+            var result = await _categoryRepository.BulkCreateAsync(categoryModel);
             Log.Logger.Information("CategoryCreated" + DateTime.Now);
-            return new Result<bool>(result);
+            return new Result<bool>(result,HttpStatusCode.Created);
         }
 
-        public async Task<IResult<List<CategoryModel>>> GetAll()
+        public async Task<IResult<List<CategoryModel>>> GetAllAsync()
         {
-            var result = await _categoryRepository.GetAll();
+            var result = await _categoryRepository.GetAllAsync();
             if (!result.Any())
             {
-                return new Result<List<CategoryModel>>(true,new List<CategoryModel>());
+                return new Result<List<CategoryModel>>(true,new List<CategoryModel>(),HttpStatusCode.Ok);
             }
-            return new Result<List<CategoryModel>>(true, result);
+            return new Result<List<CategoryModel>>(true, result,HttpStatusCode.Ok);
         }
 
-        public async Task<IResult<bool>> Delete()
+        public async Task<IResult<bool>> BulkDeleteAsync()
         {
             Log.Logger.Information("CategoryDeleted" + DateTime.Now);
-            var result = await _categoryRepository.Delete();
-            return new Result<bool>(result);
+            var result = await _categoryRepository.BulkDeleteAsync();
+            return new Result<bool>(result,HttpStatusCode.NoContent);
+        }
+        public async Task<IResult<CategoryDto>> CreateAsync(CategoryDto category)
+        {
+            if(category == null || category.Image == null ||category.Name == null)
+            {
+                return new Result<CategoryDto>(false,"Category model is not valid",HttpStatusCode.BadRequest);
+            }
+            var categoryModel = category.Adapt<CategoryModel>();
+            var result = await _categoryRepository.CreateAsync(categoryModel);
+            return new Result<CategoryDto>(true,HttpStatusCode.Created);
+        }
+
+        public async Task<IResult<bool>> DeleteAsync(Guid id)
+        {
+            if(id == Guid.Empty)
+            {
+                return new Result<bool>(false,HttpStatusCode.BadRequest);
+            }
+            var result = await _categoryRepository.DeleteAsync(id);
+            return new Result<bool>(true,HttpStatusCode.NoContent);
         }
     }
 }

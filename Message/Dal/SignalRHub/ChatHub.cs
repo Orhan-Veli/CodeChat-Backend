@@ -20,14 +20,14 @@ namespace Message.Dal.SignalRHub
     {
         private readonly IHubContext<ChatHub> _chatHub;    
         private readonly IHttpContextAccessor _httpContextAccessor; 
-        private readonly IEntityRepository<OnlineUserModel> _elasticRepository;  
+        private readonly IElasticRepository<OnlineUserModel> _elasticRepository;  
         private readonly string _indexName;
-        public ChatHub(IHubContext<ChatHub> chatHub,IEntityRepository<OnlineUserModel> elasticRepository,IConfiguration configuration)
+        public ChatHub(IHubContext<ChatHub> chatHub,IElasticRepository<OnlineUserModel> elasticRepository,IConfiguration configuration)
         {
             _chatHub = chatHub; 
             _httpContextAccessor = new HttpContextAccessor();
             _elasticRepository = elasticRepository;
-            _indexName = _indexName = configuration["elasticsearchserver:User"].ToString();
+            _indexName = configuration["elasticsearchserver:User"].ToString();
         }
         public async Task SendMessage(Guid categoryId,RabbitMqModel rabbitMqModel)
         {          
@@ -59,10 +59,10 @@ namespace Message.Dal.SignalRHub
                 var val = handler.ReadJwtToken(headerVal.ToString());  
                 onlineUserModel.UserName = val.Claims.FirstOrDefault(x => x.Type == "Name").Value;           
             } 
-            var checkOnlineUser = _elasticRepository.GetUser(onlineUserModel.UserName,_indexName); 
+            var checkOnlineUser = _elasticRepository.GetUserAsync(onlineUserModel.UserName,_indexName); 
             if(checkOnlineUser.Result == null)
             {
-                _elasticRepository.CreateUser(onlineUserModel.Id,onlineUserModel,_indexName);
+                _elasticRepository.CreateUserAsync(onlineUserModel.Id,onlineUserModel,_indexName);
             }           
            base.OnConnectedAsync();         
            return Task.CompletedTask;
@@ -72,7 +72,7 @@ namespace Message.Dal.SignalRHub
 	    {
             var httpContext = _httpContextAccessor.HttpContext.Request.Cookies;
             var token = string.Empty;          
-            var result = _elasticRepository.DeleteUser(Context.ConnectionId,_indexName);       
+            var result = _elasticRepository.DeleteUserAsync(Context.ConnectionId,_indexName);       
             base.OnDisconnectedAsync(exception);  
 	       return Task.CompletedTask;
 	    }

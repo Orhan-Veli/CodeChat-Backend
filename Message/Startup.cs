@@ -59,8 +59,8 @@ namespace Message
             services.AddSingleton<ChatHub>();   
             services.AddSingleton<IRabbitMqRepository, RabbitMqRepository>();                               
             services.AddSingleton<IRabbitMqService, RabbitMqService>();
-            services.AddSingleton<IEntityRepository<MessageModel>, ElasticRepository<MessageModel>>();
-            services.AddSingleton<IEntityRepository<OnlineUserModel>, ElasticRepository<OnlineUserModel>>();
+            services.AddSingleton<IElasticRepository<MessageModel>, ElasticRepository<MessageModel>>();
+            services.AddSingleton<IElasticRepository<OnlineUserModel>, ElasticRepository<OnlineUserModel>>();
             services.AddSingleton<IElasticService, ElasticService>();
             services.AddSingleton<IElasticClient>(
             p =>

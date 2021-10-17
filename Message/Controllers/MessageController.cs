@@ -26,7 +26,7 @@ namespace Message.Controllers
             _rabbit = rabbit;
         }
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] MessageModel model, [FromHeader] string authorization)
+        public async Task<IActionResult> CreateAsync([FromBody] MessageModel model, [FromHeader] string authorization)
         {
             if (!ModelState.IsValid || String.IsNullOrEmpty(authorization))
             {
@@ -40,62 +40,42 @@ namespace Message.Controllers
                 model.UserName = val.Claims.FirstOrDefault(x=> x.Type=="Name").Value;
                 model.UserId = Guid.Parse(val.Claims.FirstOrDefault(c=>c.Type== "id").Value);                
             }
-            var result = await _elasticService.Create(model);
+            var result = await _elasticService.CreateAsync(model);
             await _rabbit.Consumer(model);
             await _rabbit.Reciever();
-            if (!result.Success)
-            {
-                return BadRequest(result.Message);
-            }
-            return Ok();
+            return StatusCode((int)result.Response);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id)
+        public async Task<IActionResult> GetAsync(Guid id)
         {
-            var result = await _elasticService.Get(id);
-            if (!result.Success)
-            {
-                return BadRequest(result.Message);
-            }
-            return Ok(result.Data);
+            var result = await _elasticService.GetAsync(id);
+            return StatusCode((int)result.Response,new { result.Message,result.Data });
         }
 
         [HttpGet("getall/{id}")]
-        public async Task<IActionResult> GetAll(Guid id)
+        public async Task<IActionResult> GetAllAsync(Guid id)
         {
-            var result = await _elasticService.GetAll(id);
-            if (!result.Success)
-            {
-                return BadRequest(result.Message);
-            }
-            return Ok(result.Data);
+            var result = await _elasticService.GetAllAsync(id);
+            return StatusCode((int)result.Response,new {result.Message,result.Data });
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] MessageModel model)
+        public async Task<IActionResult> UpdateAsync([FromBody] MessageModel model)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest("Model state is not valid");
             }
-            var result = await _elasticService.Update(model);
-            if (result == null || !result.Success || result.Data == null)
-            {
-                return BadRequest(result.Message);
-            }
-            return Ok(result.Data);
+            var result = await _elasticService.UpdateAsync(model);
+            return StatusCode((int)result.Response,result.Data);
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> DeleteAsync(Guid id)
         {
-            var result = await _elasticService.Delete(id);
-            if (!result.Success)
-            {
-                return BadRequest(result.Message);
-            }
-            return NoContent();
+            var result = await _elasticService.DeleteAsync(id);
+            return StatusCode((int)result.Response);
         }
 
     }

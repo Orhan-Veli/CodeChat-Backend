@@ -14,32 +14,37 @@ using Message.Dal.SignalRHub;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SignalR.Client;
 using System.Runtime.Serialization.Formatters.Binary;
+using Serilog;
 namespace Message.Dal.Concrete
 {
     public class RabbitMqRepository : IRabbitMqRepository
     {
         private readonly IHubContext<ChatHub> _chatHubs;
         private readonly IConfiguration _configuration;      
-        private readonly IEntityRepository<OnlineUserModel> _elasticRepository; 
-        private string _indexName;
-        public RabbitMqRepository(IConfiguration configuration,IHubContext<ChatHub> chatHub,IEntityRepository<OnlineUserModel> elasticRepository)
+        private readonly IElasticRepository<OnlineUserModel> _elasticRepository; 
+        private readonly string _indexName;
+        private readonly ConnectionFactory connectionFactory;
+        private readonly ChatHub _chatHub;
+        public RabbitMqRepository(IConfiguration configuration,IHubContext<ChatHub> chatHub,IElasticRepository<OnlineUserModel> elasticRepository)
         {
             _configuration = configuration;
             _indexName = configuration["elasticsearchserver:User"].ToString();
             _elasticRepository = elasticRepository;
-            _chatHubs = chatHub;           
+            _chatHubs = chatHub;
+            connectionFactory = new ConnectionFactory()
+            {
+                UserName = _configuration["Rabbitmq:UserName"],
+                Password = _configuration["Rabbitmq:Password"],
+                VirtualHost =_configuration["Rabbitmq:VirtualHost"],
+                HostName = _configuration["Rabbitmq:HostName"],
+                Port = Convert.ToInt32(_configuration["Rabbitmq:Port"]),
+                Uri = new Uri(_configuration["Rabbitmq:con"])
+            };
+            _chatHub = new ChatHub(_chatHubs,_elasticRepository,_configuration);                     
         }
         public async Task Consumer(MessageModel model)
         {
-            var factory = new ConnectionFactory();
-            factory.UserName = "orhan";
-            factory.Password = "123456";
-            factory.VirtualHost = "/";
-            factory.HostName = "localhost";
-            factory.Port = 5672;
-
-            factory.Uri = new Uri(_configuration["Rabbitmq:con"]);
-            using (IConnection connection = factory.CreateConnection())
+            using (IConnection connection = connectionFactory.CreateConnection())
             using (IModel channel = connection.CreateModel())
             {
                 channel.QueueDeclare(
@@ -67,13 +72,7 @@ namespace Message.Dal.Concrete
 
         public async Task Reciever()
         {
-            var factory = new ConnectionFactory();
-            factory.UserName = "orhan";
-            factory.Password = "123456";
-            factory.VirtualHost = "/";
-            factory.HostName = "localhost";
-            factory.Uri = new Uri(_configuration["Rabbitmq:con"]);
-            using (IConnection connection = factory.CreateConnection())
+            using (IConnection connection = connectionFactory.CreateConnection())
             using (IModel channel = connection.CreateModel())
             {
                 try
@@ -84,15 +83,14 @@ namespace Message.Dal.Concrete
                 exclusive: false,
                 autoDelete: false,
                 arguments: null
-                );
-                var _chatHub= new ChatHub(_chatHubs,_elasticRepository,_configuration);
+                );             
                 var consumer = new EventingBasicConsumer(channel);               
                 consumer.Received += async (model, ea) =>
                 {
                     var body = ea.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);                      
                     var messageModel = JsonConvert.DeserializeObject<MessageModel>(message); 
-                    var users = _elasticRepository.GetAll(_indexName).Result;
+                    var users = _elasticRepository.GetAllAsync(_indexName).Result;
                     var rabbitMqModel = new RabbitMqModel();
                     rabbitMqModel.OnlineUserModels = users;
                     rabbitMqModel.MessageModels = messageModel;                                              
@@ -108,7 +106,7 @@ namespace Message.Dal.Concrete
                 }
                  catch (Exception ex)
                 {
-                    
+                     Log.Logger.Information("Rabbitmq error"+ ex.Message + DateTime.Now);
                 }
                
             }

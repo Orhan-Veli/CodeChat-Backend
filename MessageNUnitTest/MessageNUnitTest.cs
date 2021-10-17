@@ -79,10 +79,10 @@ namespace MessageNUnitTest
         {
         var mockElastic = new Mock<IElasticService>();
         var mockRabbitMq = new Mock<IRabbitMqService>();
-        mockElastic.Setup(x=>x.Get(Guid.Parse(_messageParameters.Id)).Result).Returns(new Result<MessageModel>(true));
+        mockElastic.Setup(x=>x.GetAsync(Guid.Parse(_messageParameters.Id)).Result.Response).Returns(HttpStatusCode.Ok);
         var controller = new MessageController(mockElastic.Object,mockRabbitMq.Object);           
-        var response = await controller.Get(Guid.Parse(_messageParameters.Id));      
-        Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.OkObjectResult>(response);
+        var response = await controller.GetAsync(Guid.Parse(_messageParameters.Id));      
+        Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.ObjectResult>(response);
         }
 
         [Test]
@@ -90,10 +90,10 @@ namespace MessageNUnitTest
         {
         var mockElastic = new Mock<IElasticService>();
         var mockRabbitMq = new Mock<IRabbitMqService>();
-        mockElastic.Setup(x=>x.Get(Guid.Parse(_messageParameters.Empty)).Result).Returns(new Result<MessageModel>(false));
+        mockElastic.Setup(x=>x.GetAsync(Guid.Parse(_messageParameters.Empty)).Result.Response).Returns(HttpStatusCode.BadRequest);
         var controller = new MessageController(mockElastic.Object,mockRabbitMq.Object);           
-        var response = await controller.Get(Guid.Parse(_messageParameters.Empty));      
-        Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.BadRequestObjectResult>(response);
+        var response = await controller.GetAsync(Guid.Parse(_messageParameters.Empty));      
+        Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.ObjectResult>(response);
         }
 
         [Test]
@@ -101,10 +101,10 @@ namespace MessageNUnitTest
         {
         var mockElastic = new Mock<IElasticService>();
         var mockRabbitMq = new Mock<IRabbitMqService>();
-        mockElastic.Setup(x=>x.GetAll(Guid.Parse(_messageParameters.Id)).Result).Returns(new Result<List<MessageModel>>(true));
+        mockElastic.Setup(x=>x.GetAllAsync(Guid.Parse(_messageParameters.Id)).Result.Response).Returns(HttpStatusCode.Ok);
         var controller = new MessageController(mockElastic.Object,mockRabbitMq.Object);           
-        var response = await controller.GetAll(Guid.Parse(_messageParameters.Id));      
-        Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.OkObjectResult>(response);
+        var response = await controller.GetAllAsync(Guid.Parse(_messageParameters.Id));      
+        Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.ObjectResult>(response);
         }
 
         [Test]
@@ -112,10 +112,10 @@ namespace MessageNUnitTest
         {
         var mockElastic = new Mock<IElasticService>();
         var mockRabbitMq = new Mock<IRabbitMqService>();
-        mockElastic.Setup(x=>x.GetAll(Guid.Parse(_messageParameters.Empty)).Result).Returns(new Result<List<MessageModel>>(false));
+        mockElastic.Setup(x=>x.GetAllAsync(Guid.Parse(_messageParameters.Empty)).Result.Response).Returns(HttpStatusCode.BadRequest);
         var controller = new MessageController(mockElastic.Object,mockRabbitMq.Object);           
-        var response = await controller.GetAll(Guid.Parse(_messageParameters.Empty));      
-        Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.BadRequestObjectResult>(response);
+        var response = await controller.GetAllAsync(Guid.Parse(_messageParameters.Empty));      
+        Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.ObjectResult>(response);
         }
 
        [Test]
@@ -123,10 +123,10 @@ namespace MessageNUnitTest
         {
         var mockElastic = new Mock<IElasticService>();
         var mockRabbitMq = new Mock<IRabbitMqService>();
-        mockElastic.Setup(x=>x.Delete(Guid.Parse(_messageParameters.Id)).Result).Returns(new Result<bool>(true));    
+        mockElastic.Setup(x=>x.DeleteAsync(Guid.Parse(_messageParameters.Id)).Result.Response).Returns(HttpStatusCode.NoContent);    
         var controller = new MessageController(mockElastic.Object,mockRabbitMq.Object);           
-        var response = await controller.Delete(Guid.Parse(_messageParameters.Id));      
-        Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.NoContentResult>(response);
+        var response = await controller.DeleteAsync(Guid.Parse(_messageParameters.Id));      
+        Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.StatusCodeResult>(response);      
         }
 
          [Test]
@@ -134,10 +134,10 @@ namespace MessageNUnitTest
         {
         var mockElastic = new Mock<IElasticService>();
         var mockRabbitMq = new Mock<IRabbitMqService>();
-        mockElastic.Setup(x=>x.Delete(Guid.Parse(_messageParameters.Empty)).Result).Returns(new Result<bool>(false));
+        mockElastic.Setup(x=>x.DeleteAsync(Guid.Parse(_messageParameters.Empty)).Result.Response).Returns(HttpStatusCode.BadRequest);
         var controller = new MessageController(mockElastic.Object,mockRabbitMq.Object);           
-        var response = await controller.Delete(Guid.Parse(_messageParameters.Empty));      
-        Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.BadRequestObjectResult>(response);
+        var response = await controller.DeleteAsync(Guid.Parse(_messageParameters.Empty));      
+        Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.StatusCodeResult>(response);
         }
     }
 }

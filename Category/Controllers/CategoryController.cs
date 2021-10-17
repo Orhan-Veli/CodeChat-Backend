@@ -1,5 +1,6 @@
 
 using System;
+using System.Web;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,40 +27,38 @@ namespace Category.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> GetAllModels()
+        public async Task<IActionResult> GetAllAsync()
         {
-            var result = await _categoryService.GetAll();
-            if (!result.Success)
-            {
-                return BadRequest(result.Message);
-            }
-            return Ok(result.Data);
+            var result = await _categoryService.GetAllAsync();          
+            return StatusCode((int)result.Response,new { result.Message ,result.Data});
         }
 
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] List<CategoryDto> category)
+        public async Task<IActionResult> BulkCreateAsync([FromBody] List<CategoryDto> categories)
         {
-            if (!category.Any())
-            {
-                return BadRequest();
-            }
-            var result = await _categoryService.Create(category);
-            if (!result.Success)
-            {
-                return BadRequest();
-            }
-            return Ok();
+            var result = await _categoryService.BulkCreateAsync(categories);            
+            return StatusCode((int)result.Response,new { result.Message ,result.Data});
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateAsync(CategoryDto category)
+        {   
+            var result = await _categoryService.CreateAsync(category);
+            return StatusCode((int)result.Response,new { result.Message ,result.Data});
         }
 
         [HttpDelete]
-        public async Task<ActionResult> Delete()
+        public async Task<IActionResult> BulkDeleteAsync()
         {
-            var result = await _categoryService.Delete();
-            if (!result.Success)
-            {
-                return BadRequest();
-            }
-            return NoContent();
+            var result = await _categoryService.BulkDeleteAsync();
+            return StatusCode((int)result.Response);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(Guid id)
+        {
+            var result = await _categoryService.DeleteAsync(id);
+            return StatusCode((int)result.Response);
         }
     }
 }

@@ -45,7 +45,7 @@ namespace Category
                 });
             services.AddControllers();
             services.AddOptions();
-            services.AddSingleton<IRepository, CategoryRepository>();
+            services.AddSingleton<ICategoryRepository, CategoryRepository>();
             services.AddSingleton<ICategoryService, CategoryService>();
             services.AddTransient<IValidator<CategoryDto>, CategoryDtoValidation>();
 

@@ -5,5 +5,6 @@ namespace Category.Dto
         public string Name { get; set; }
 
         public string Image { get; set; }
+        //image to base64
     }
 }

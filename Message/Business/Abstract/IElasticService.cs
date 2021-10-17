@@ -8,10 +8,10 @@ namespace Message.Business.Abstract
 {
     public interface IElasticService
     {
-        Task<IResult<bool>> Create(MessageModel model);
-        Task<IResult<MessageModel>> Get(Guid id);
-        Task<IResult<List<MessageModel>>> GetAll(Guid id);
-        Task<IResult<MessageModel>> Update(MessageModel model);
-        Task<IResult<bool>> Delete(Guid id);
+        Task<IResult<bool>> CreateAsync(MessageModel model);
+        Task<IResult<MessageModel>> GetAsync(Guid id);
+        Task<IResult<List<MessageModel>>> GetAllAsync(Guid id);
+        Task<IResult<MessageModel>> UpdateAsync(MessageModel model);
+        Task<IResult<bool>> DeleteAsync(Guid id);
     }
 }

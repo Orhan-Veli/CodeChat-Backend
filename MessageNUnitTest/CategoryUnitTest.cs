@@ -10,10 +10,11 @@ using Category.Business.Concrete;
 using Category.Dto;
 using Category.Dal.Model;
 using System;
-using System.Net;
+//using System.Net;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Category.Controllers;
+using Category.Utilities.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MessageNUnitTest
@@ -44,10 +45,10 @@ namespace MessageNUnitTest
             var categoryDtoList = new List<CategoryDto>();
             categoryDtoList.Add(_categoryDtoTrue);       
             var mock = new Mock<ICategoryService>();
-            mock.Setup(x=> x.Create(categoryDtoList).Result.Success).Returns(true);
+            mock.Setup(x=> x.BulkCreateAsync(categoryDtoList).Result.Response).Returns(HttpStatusCode.Ok);
             var controller = new CategoryController(mock.Object);
-            var result = await controller.Create(categoryDtoList);
-            Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.OkResult>(result);
+            var result = await controller.BulkCreateAsync(categoryDtoList);
+            Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.ObjectResult>(result);
         }
 
         [Test]
@@ -55,10 +56,10 @@ namespace MessageNUnitTest
         {
             var categoryDtoList = new List<CategoryDto>();   
             var mock = new Mock<ICategoryService>();
-            mock.Setup(x=> x.Create(categoryDtoList).Result.Success).Returns(false);
+            mock.Setup(x=> x.BulkCreateAsync(categoryDtoList).Result.Response).Returns(HttpStatusCode.BadRequest);
             var controller = new CategoryController(mock.Object);
-            var result = await controller.Create(categoryDtoList);
-            Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.BadRequestResult>(result);
+            var result = await controller.BulkCreateAsync(categoryDtoList);
+            Assert.IsInstanceOf<Microsoft.AspNetCore.Mvc.ObjectResult>(result);
         }
     }
 }
