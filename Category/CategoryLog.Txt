@@ -15413,3 +15413,315 @@ StackExchange.Redis.RedisConnectionException: No connection is active/available 
 2021-10-17 17:16:20.636 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 647.6108ms
 2021-10-17 17:16:20.638 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
 2021-10-17 17:16:20.640 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category - - - 200 - application/json;+charset=utf-8 709.7529ms
+2021-10-18 21:55:01.475 +03:00 [INF] Now listening on: http://localhost:7000
+2021-10-18 21:55:01.486 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-10-18 21:55:01.486 +03:00 [INF] Hosting environment: Development
+2021-10-18 21:55:01.486 +03:00 [INF] Content root path: C:\Users\orhan\Desktop\CodeChat\CodeChat-Backend\Category
+2021-10-18 21:56:32.283 +03:00 [INF] Application is shutting down...
+2021-10-18 21:56:58.801 +03:00 [INF] Now listening on: http://localhost:7000
+2021-10-18 21:56:58.813 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-10-18 21:56:58.813 +03:00 [INF] Hosting environment: Development
+2021-10-18 21:56:58.813 +03:00 [INF] Content root path: C:\Users\orhan\Desktop\CodeChat\CodeChat-Backend\Category
+2021-10-18 22:00:02.369 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:00:02.376 +03:00 [WRN] Failed to determine the https port for redirect.
+2021-10-18 22:00:02.417 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:00:02.435 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 68.8134ms
+2021-10-18 22:00:02.463 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:00:02.463 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:00:02.468 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:00:02.507 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:00:03.080 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:00:03.118 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 605.7387ms
+2021-10-18 22:00:03.119 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:00:03.120 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 657.0667ms
+2021-10-18 22:00:07.430 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:00:07.431 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:00:07.431 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:00:07.432 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:00:07.440 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:00:07.440 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 8.6859ms
+2021-10-18 22:00:07.441 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:00:07.441 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 10.9963ms
+2021-10-18 22:00:56.449 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:00:56.449 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:00:56.450 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.9804ms
+2021-10-18 22:00:56.480 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:00:56.483 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:00:56.483 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:00:56.483 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:00:56.486 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:00:56.486 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 3.1458ms
+2021-10-18 22:00:56.487 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:00:56.487 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 6.4515ms
+2021-10-18 22:01:25.191 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:01:25.191 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:01:25.191 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.2900ms
+2021-10-18 22:01:25.204 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:01:25.204 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:01:25.204 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:01:25.204 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:01:25.207 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:01:25.208 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 3.6699ms
+2021-10-18 22:01:25.208 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:01:25.208 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 4.1857ms
+2021-10-18 22:01:26.949 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:01:26.949 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:01:26.949 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:01:26.950 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:01:27.016 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:01:27.016 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 66.4848ms
+2021-10-18 22:01:27.016 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:01:27.017 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 67.8047ms
+2021-10-18 22:14:06.486 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:14:06.486 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:14:06.487 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.6093ms
+2021-10-18 22:14:06.495 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:14:06.495 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:14:06.495 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:14:06.495 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:14:06.499 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:14:06.500 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 4.5305ms
+2021-10-18 22:14:06.500 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:14:06.500 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 5.2194ms
+2021-10-18 22:14:47.937 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:14:47.937 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:14:47.937 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.2748ms
+2021-10-18 22:14:47.975 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:14:47.976 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:14:47.976 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:14:47.976 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:14:47.980 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:14:47.981 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 4.7471ms
+2021-10-18 22:14:47.992 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:14:47.993 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 17.1464ms
+2021-10-18 22:15:18.117 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:15:18.117 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:15:18.117 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.3265ms
+2021-10-18 22:15:18.120 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:15:18.120 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:15:18.120 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:15:18.120 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:15:18.123 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:15:18.124 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 3.7831ms
+2021-10-18 22:15:18.124 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:15:18.124 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 4.4780ms
+2021-10-18 22:15:59.734 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:15:59.734 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:15:59.734 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.3464ms
+2021-10-18 22:15:59.746 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:15:59.747 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:15:59.747 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:15:59.747 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:15:59.757 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:15:59.757 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 10.5612ms
+2021-10-18 22:15:59.757 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:15:59.758 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 11.0864ms
+2021-10-18 22:16:48.283 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:16:48.283 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:16:48.283 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.3803ms
+2021-10-18 22:16:48.288 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:16:48.288 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:16:48.288 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:16:48.288 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:16:48.307 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:16:48.307 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 19.248ms
+2021-10-18 22:16:48.308 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:16:48.308 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 19.7328ms
+2021-10-18 22:19:38.254 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:19:38.254 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:19:38.255 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.8642ms
+2021-10-18 22:19:38.339 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:19:38.339 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:19:38.339 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:19:38.340 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:19:38.365 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:19:38.365 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 25.5785ms
+2021-10-18 22:19:38.365 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:19:38.365 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 26.1172ms
+2021-10-18 22:20:26.538 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:20:26.538 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:20:26.538 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.3631ms
+2021-10-18 22:20:26.569 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:20:26.569 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:20:26.569 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:20:26.569 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:20:26.577 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:20:26.578 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 8.0987ms
+2021-10-18 22:20:26.578 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:20:26.578 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 8.6575ms
+2021-10-18 22:24:18.941 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:24:18.941 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:24:18.941 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.4559ms
+2021-10-18 22:24:18.948 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:24:18.948 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:24:18.948 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:24:18.948 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:24:18.977 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:24:18.977 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 29.0014ms
+2021-10-18 22:24:18.977 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:24:18.978 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 29.6395ms
+2021-10-18 22:26:36.892 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:26:36.893 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:26:36.893 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.3742ms
+2021-10-18 22:26:36.904 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:26:36.904 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:26:36.904 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:26:36.904 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:26:36.912 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:26:36.913 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 8.5252ms
+2021-10-18 22:26:36.913 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:26:36.913 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 9.2889ms
+2021-10-18 22:30:48.657 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:30:48.657 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:30:48.657 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.2828ms
+2021-10-18 22:30:48.714 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:30:48.714 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:30:48.714 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:30:48.715 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:30:48.746 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:30:48.747 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 31.715ms
+2021-10-18 22:30:48.747 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:30:48.747 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 32.5865ms
+2021-10-18 22:32:26.887 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:32:26.887 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:32:26.887 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.3499ms
+2021-10-18 22:32:26.927 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:32:26.927 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:32:26.927 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:32:26.927 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:32:26.963 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:32:26.964 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 36.2966ms
+2021-10-18 22:32:26.964 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:32:26.964 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 36.8185ms
+2021-10-18 22:32:41.486 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:32:41.486 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:32:41.486 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.4452ms
+2021-10-18 22:32:41.513 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:32:41.513 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:32:41.515 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:32:41.515 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:32:41.655 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:32:41.655 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 139.645ms
+2021-10-18 22:32:41.655 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:32:41.655 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 142.2686ms
+2021-10-18 22:32:58.608 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:32:58.608 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:32:58.608 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.4218ms
+2021-10-18 22:32:58.619 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:32:58.619 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:32:58.619 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:32:58.619 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:32:58.640 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:32:58.640 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 20.6813ms
+2021-10-18 22:32:58.642 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:32:58.642 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 23.0239ms
+2021-10-18 22:34:00.382 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:34:00.382 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:34:00.382 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.3166ms
+2021-10-18 22:34:00.470 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:34:00.470 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:34:00.470 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:34:00.470 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:34:00.709 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:34:00.709 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 239.0545ms
+2021-10-18 22:34:00.710 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:34:00.710 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 239.8461ms
+2021-10-18 22:35:11.841 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:35:11.841 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:35:11.841 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.4476ms
+2021-10-18 22:35:11.858 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:35:11.858 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:35:11.858 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:35:11.859 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:35:11.878 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:35:11.878 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 19.7051ms
+2021-10-18 22:35:11.878 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:35:11.878 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 20.1110ms
+2021-10-18 22:35:54.564 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:35:54.565 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:35:54.565 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.8593ms
+2021-10-18 22:35:54.611 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:35:54.611 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:35:54.611 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:35:54.612 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:35:54.636 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:35:54.636 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 24.0326ms
+2021-10-18 22:35:54.636 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:35:54.636 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 25.0709ms
+2021-10-18 22:36:38.757 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:36:38.757 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:36:38.757 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.1942ms
+2021-10-18 22:36:39.081 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:36:39.081 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:36:39.081 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:36:39.082 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:36:39.210 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:36:39.210 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 128.476ms
+2021-10-18 22:36:39.210 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:36:39.210 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 128.9732ms
+2021-10-18 22:37:34.828 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:37:34.828 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:37:34.828 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.3048ms
+2021-10-18 22:37:34.836 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:37:34.837 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:37:34.837 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:37:34.837 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:37:34.840 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:37:34.840 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 2.9378ms
+2021-10-18 22:37:34.840 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:37:34.840 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 3.4817ms
+2021-10-18 22:38:58.537 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:38:58.537 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:38:58.538 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 1.3805ms
+2021-10-18 22:38:58.582 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:38:58.583 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:38:58.583 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:38:58.583 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:38:58.591 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:38:58.591 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 8.1479ms
+2021-10-18 22:38:58.591 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:38:58.591 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 8.9475ms
+2021-10-18 22:39:27.753 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:39:27.753 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:39:27.753 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.2165ms
+2021-10-18 22:39:27.764 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:39:27.764 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:39:27.764 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:39:27.765 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:39:27.772 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:39:27.772 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 7.4289ms
+2021-10-18 22:39:27.772 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:39:27.772 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 8.8691ms
+2021-10-18 22:40:13.740 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:40:13.740 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:40:13.740 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.3049ms
+2021-10-18 22:40:13.750 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:40:13.750 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:40:13.750 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:40:13.750 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:40:13.765 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:40:13.765 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 14.6712ms
+2021-10-18 22:40:13.765 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:40:13.765 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 15.1766ms
+2021-10-18 22:40:55.318 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:40:55.318 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:40:55.319 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.6995ms
+2021-10-18 22:40:55.322 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:40:55.322 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:40:55.322 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:40:55.325 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:40:55.337 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:40:55.337 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 12.1256ms
+2021-10-18 22:40:55.337 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:40:55.337 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 15.3519ms
+2021-10-18 22:54:02.215 +03:00 [INF] Request starting HTTP/1.1 OPTIONS http://localhost:7000/api/category - -
+2021-10-18 22:54:02.215 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:54:02.215 +03:00 [INF] Request finished HTTP/1.1 OPTIONS http://localhost:7000/api/category - - - 204 - - 0.3200ms
+2021-10-18 22:54:02.250 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:7000/api/category application/json -
+2021-10-18 22:54:02.250 +03:00 [INF] CORS policy execution successful.
+2021-10-18 22:54:02.250 +03:00 [INF] Executing endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:54:02.250 +03:00 [INF] Route matched with {action = "GetAll", controller = "Category"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllAsync() on controller Category.Controllers.CategoryController (Category).
+2021-10-18 22:54:02.269 +03:00 [INF] Executing ObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[Category.Dal.Model.CategoryModel, Category, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=5.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2021-10-18 22:54:02.269 +03:00 [INF] Executed action Category.Controllers.CategoryController.GetAllAsync (Category) in 18.7034ms
+2021-10-18 22:54:02.269 +03:00 [INF] Executed endpoint 'Category.Controllers.CategoryController.GetAllAsync (Category)'
+2021-10-18 22:54:02.277 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:7000/api/category application/json - - 200 - application/json;+charset=utf-8 19.2101ms

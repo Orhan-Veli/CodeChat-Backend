@@ -29,9 +29,9 @@ namespace Message.Dal.SignalRHub
             _elasticRepository = elasticRepository;
             _indexName = configuration["elasticsearchserver:User"].ToString();
         }
-        public async Task SendMessage(Guid categoryId,RabbitMqModel rabbitMqModel)
+        public async Task SendMessage(Guid categoryId,string message)
         {          
-            await _chatHub.Clients.All.SendAsync(categoryId.ToString(),rabbitMqModel);           
+            await _chatHub.Clients.All.SendAsync(categoryId.ToString(),message);           
         }        
         
         public override Task OnConnectedAsync()
@@ -45,14 +45,7 @@ namespace Message.Dal.SignalRHub
            {
                return Task.CompletedTask;
            }
-           foreach (var item in httpContext)
-                {
-                    if(item.Key == "CodeChatCookie")
-                    {
-                        token = item.Value;
-                        break;
-                    }
-                }
+           token = httpContext.Where(x=> x.Key == "CodeChatBackend").FirstOrDefault().Value;
            if(AuthenticationHeaderValue.TryParse(token,out var headerVal))
             {                
                 var handler = new JwtSecurityTokenHandler();
@@ -63,7 +56,9 @@ namespace Message.Dal.SignalRHub
             if(checkOnlineUser.Result == null)
             {
                 _elasticRepository.CreateUserAsync(onlineUserModel.Id,onlineUserModel,_indexName);
-            }           
+            }       
+            var getOnlineUser = _elasticRepository.GetAllAsync(_indexName);
+            _chatHub.Clients.All.SendAsync("UserConnected",getOnlineUser); 
            base.OnConnectedAsync();         
            return Task.CompletedTask;
 	    }	  
@@ -72,7 +67,9 @@ namespace Message.Dal.SignalRHub
 	    {
             var httpContext = _httpContextAccessor.HttpContext.Request.Cookies;
             var token = string.Empty;          
-            var result = _elasticRepository.DeleteUserAsync(Context.ConnectionId,_indexName);       
+            var result = _elasticRepository.DeleteUserAsync(Context.ConnectionId,_indexName); 
+            var getOnlineUser = _elasticRepository.GetAllAsync(_indexName);
+            _chatHub.Clients.All.SendAsync("UserConnected",getOnlineUser);      
             base.OnDisconnectedAsync(exception);  
 	       return Task.CompletedTask;
 	    }

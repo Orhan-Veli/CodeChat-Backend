@@ -91,10 +91,10 @@ namespace Message.Dal.Concrete
                     var message = Encoding.UTF8.GetString(body);                      
                     var messageModel = JsonConvert.DeserializeObject<MessageModel>(message); 
                     var users = _elasticRepository.GetAllAsync(_indexName).Result;
-                    var rabbitMqModel = new RabbitMqModel();
-                    rabbitMqModel.OnlineUserModels = users;
-                    rabbitMqModel.MessageModels = messageModel;                                              
-                    await _chatHub.SendMessage(messageModel.CategoryId, rabbitMqModel);
+                    // var rabbitMqModel = new RabbitMqModel();
+                    // rabbitMqModel.OnlineUserModels = users;
+                    // rabbitMqModel.MessageModels = messageModel;                                              
+                    await _chatHub.SendMessage(messageModel.CategoryId, message);
                 };
                 
                 channel.BasicConsume
