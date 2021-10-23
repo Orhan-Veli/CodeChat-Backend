@@ -66,6 +66,7 @@ namespace Identity
             })
             .AddErrorDescriber<CustomIdentityErrorDescriber>()
             .AddDefaultTokenProviders()
+            .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>();
             
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

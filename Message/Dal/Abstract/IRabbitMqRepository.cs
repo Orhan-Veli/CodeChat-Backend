@@ -1,11 +1,14 @@
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Message.Dal.Model;
 namespace Message.Dal.Abstract
 {
-    public interface IRabbitMqRepository
+    public interface IRabbitMqRepository<T>
     {
-        Task Consumer(MessageModel model);
+        Task Consumer(T model);
 
         Task Reciever();
+
+    
     }
 }

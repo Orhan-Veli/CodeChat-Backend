@@ -11,6 +11,7 @@ using RabbitMQ.Client.Events;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
 using Message.Dal.SignalRHub;
+using Message.Business.Concrete;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SignalR.Client;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -21,15 +22,12 @@ namespace Message.Dal.Concrete
     {
         private readonly IHubContext<ChatHub> _chatHubs;
         private readonly IConfiguration _configuration;      
-        private readonly IElasticRepository<OnlineUserModel> _elasticRepository; 
-        private readonly string _indexName;
         private readonly ConnectionFactory connectionFactory;
         private readonly ChatHub _chatHub;
-        public RabbitMqRepository(IConfiguration configuration,IHubContext<ChatHub> chatHub,IElasticRepository<OnlineUserModel> elasticRepository)
+
+        public RabbitMqRepository(IConfiguration configuration,IHubContext<ChatHub> chatHub)
         {
             _configuration = configuration;
-            _indexName = configuration["elasticsearchserver:User"].ToString();
-            _elasticRepository = elasticRepository;
             _chatHubs = chatHub;
             connectionFactory = new ConnectionFactory()
             {
@@ -40,7 +38,7 @@ namespace Message.Dal.Concrete
                 Port = Convert.ToInt32(_configuration["Rabbitmq:Port"]),
                 Uri = new Uri(_configuration["Rabbitmq:con"])
             };
-            _chatHub = new ChatHub(_chatHubs,_elasticRepository,_configuration);                     
+            _chatHub = new ChatHub(_chatHubs); 
         }
         public async Task Consumer(MessageModel model)
         {
@@ -53,11 +51,9 @@ namespace Message.Dal.Concrete
                 exclusive: false,
                 autoDelete: false,
                 arguments: null
-                );
-                              
+                );                              
                 var message = JsonConvert.SerializeObject(model);                          
-                var body = Encoding.UTF8.GetBytes(message);
-               
+                var body = Encoding.UTF8.GetBytes(message);              
 
                 channel.BasicPublish
                 (
@@ -89,11 +85,7 @@ namespace Message.Dal.Concrete
                 {
                     var body = ea.Body.ToArray();
                     var message = Encoding.UTF8.GetString(body);                      
-                    var messageModel = JsonConvert.DeserializeObject<MessageModel>(message); 
-                    var users = _elasticRepository.GetAllAsync(_indexName).Result;
-                    // var rabbitMqModel = new RabbitMqModel();
-                    // rabbitMqModel.OnlineUserModels = users;
-                    // rabbitMqModel.MessageModels = messageModel;                                              
+                    var messageModel = JsonConvert.DeserializeObject<MessageModel>(message);                                           
                     await _chatHub.SendMessage(messageModel.CategoryId, message);
                 };
                 
@@ -111,6 +103,7 @@ namespace Message.Dal.Concrete
                
             }
         }
+
         
     }
 }

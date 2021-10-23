@@ -29,12 +29,14 @@ namespace Identity.Business.Concrete
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
-        public UserService(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,IConfiguration configuration)
+        public UserService(UserManager<AppUser> userManager,SignInManager<AppUser> signInManager,IConfiguration configuration,RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
+            _roleManager = roleManager;
         }
 
         public async Task<IResult<bool>> CreateUser(UserModel userModel)
@@ -45,11 +47,19 @@ namespace Identity.Business.Concrete
                 Email = userModel.Email
             };
             IdentityResult result = await _userManager.CreateAsync(appUser, userModel.Password);
-            return new Result<bool>(result.Succeeded);
+            var roles = _roleManager.Roles.ToList();
+            var role = await _roleManager.GetRoleNameAsync(roles.FirstOrDefault(x => x.Name == "User"));
+            if(result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(appUser,role);
+                return new Result<bool>(true);
+            }
+            return new Result<bool>(false);
         }
         public async Task<IResult<bool>> Login(UserLoginModel userLoginModel)
         {
             AppUser user = await _userManager.FindByEmailAsync(userLoginModel.Email);
+            var userRole = await _userManager.GetRolesAsync(user);
             if(user != null)
             {
                 await _signInManager.SignOutAsync();
@@ -58,7 +68,12 @@ namespace Identity.Business.Concrete
                 {
                     var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
                     var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);   
-                    var claims = new Claim[] {new Claim("id",user.Id.ToString()),new Claim("Name",user.UserName.ToString())};
+                    var claims = new Claim[] 
+                    {
+                        new Claim("id",user.Id.ToString()),
+                        new Claim("Name",user.UserName.ToString()),
+                        new Claim("Role",userRole.FirstOrDefault())
+                    };
 
                     var securityToken = new JwtSecurityToken(
                         _configuration["Jwt:Issuer"], 
@@ -117,6 +132,17 @@ namespace Identity.Business.Concrete
             return new Result<bool>(false);
         }
 
+        public async Task<IResult<bool>> CreateRole(string role)
+        {
+            var checkRoleIsExist = await _roleManager.RoleExistsAsync(role);
+            if(!checkRoleIsExist)
+            {
+                var newRole = new IdentityRole();
+                newRole.Name = role;
+                await _roleManager.CreateAsync(newRole);
+            }
+            return new Result<bool>(true);
+        }
     }
 }
 

@@ -21,7 +21,7 @@ namespace Message.Extensions
         {
             return descriptor.Map<OnlineUserModel>
             (M => M.Properties
-            (T => T.Text(K => K.Name(N => N.Id))
+            (T => T.Text(K => K.Name(N => N.UserConnection))
             .Text(T => T.Name(N => N.UserName))            
             ));
         }

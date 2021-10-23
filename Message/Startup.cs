@@ -99,6 +99,7 @@ namespace Message
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<ChatHub>("/ChatHub");
+                endpoints.MapHub<UserHub>("/UserHub");
             });
         }
     }

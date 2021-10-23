@@ -91,7 +91,12 @@ namespace Identity.Controllers
                 return Ok();
             }
             return BadRequest();
-
+        }
+        [HttpPost("role")]
+        public async Task<IActionResult> CreateRole([FromQuery]string role)
+        {
+            var result = await _userService.CreateRole(role);
+            return Ok();
         }
     
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Identity.Utilities.Abstract;
 using Identity.Model;
 namespace Identity.Business.Abstract
@@ -15,5 +16,7 @@ namespace Identity.Business.Abstract
         Task LogOutUser();
         
         Task<IResult<bool>> UpdatePassword(string password,string userId,string token);
+
+        Task<IResult<bool>> CreateRole(string role);
     }
 }

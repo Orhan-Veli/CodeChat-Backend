@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Message.Dal.Model;
 using Message.Dal.Abstract;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 namespace Message.Business.Concrete
 {
@@ -21,5 +22,6 @@ namespace Message.Business.Concrete
         {
             await _rabbit.Reciever();
         }
+
     }
 }
