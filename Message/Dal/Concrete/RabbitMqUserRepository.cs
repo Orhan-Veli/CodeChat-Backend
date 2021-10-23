@@ -18,7 +18,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Serilog;
 namespace Message.Dal.Concrete
 {
-    public class RabbitMqUserRepository : IRabbitMqRepository<List<string>>
+    public class RabbitMqUserRepository : IRabbitMqUserRepository
     {
         private readonly ConnectionFactory connectionFactory;
         private readonly IHubContext<UserHub> _userHubs;
