@@ -8,7 +8,5 @@ namespace Message.Dal.Abstract
         Task Consumer(MessageModel model);
 
         Task Reciever();
-
-    
     }
 }

@@ -69,7 +69,7 @@ namespace Identity.Controllers
             return Unauthorized();
         }
 
-        [HttpPost]
+        [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
             await _userService.LogOutUser();
@@ -98,6 +98,24 @@ namespace Identity.Controllers
             var result = await _userService.CreateRole(role);
             return Ok();
         }
-    
+
+        [HttpPost("getuserrole")]
+        public async Task<IActionResult> GetUserRole([FromHeader] string authorization)
+        {
+            if(authorization == null) 
+            {
+                return Unauthorized();
+            }
+                if(AuthenticationHeaderValue.TryParse(authorization, out var headerVal))
+                {
+                var token = headerVal.Parameter;
+                var result = await _userService.GetUserRole(token);
+                if(result.Success)
+                {
+                    return Ok(result.Message);
+                }
+            }               
+            return Unauthorized();
+        }    
     }
 }

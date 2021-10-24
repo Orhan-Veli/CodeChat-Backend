@@ -89,6 +89,21 @@ namespace Identity.Business.Concrete
             return new Result<bool>(false,"user is null");
         }
 
+        public async Task<IResult<string>> GetUserRole(string token)
+        {
+             try
+            {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var securityToken = (JwtSecurityToken)tokenHandler.ReadToken(token);
+            var claimValue = securityToken.Claims.FirstOrDefault(c => c.Type == "Role")?.Value;
+                return new Result<string>(true,claimValue);
+            }
+            catch (Exception ex)
+            {
+                return new Result<string>(false);
+            }
+        }
+
         public async Task<IResult<bool>> CheckUser(string token)
         {
             try
