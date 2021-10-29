@@ -61,17 +61,22 @@ namespace Message
             services.AddSingleton<IRabbitMqService, RabbitMqService>();
             services.AddSingleton<IElasticRepository<MessageModel>, ElasticRepository<MessageModel>>();
             services.AddSingleton<IElasticRepository<OnlineUserModel>, ElasticRepository<OnlineUserModel>>();
+            services.AddSingleton<IElasticRepository<ReportedMessageModel>, ElasticRepository<ReportedMessageModel>>();
             services.AddSingleton<IElasticService, ElasticService>();
             services.AddSingleton<IElasticClient>(
             p =>
             {
                 var elastic = new ElasticClient(new ConnectionSettings(new Uri(Configuration["elasticsearchserver:Host"]))
                 .BasicAuthentication(Configuration["elasticsearchserver:Username"], Configuration["elasticsearchserver:Password"]));
-                var any = elastic.Indices.Exists(Configuration["elasticsearchserver:Message"].ToString());
-                if (!any.Exists)
+                var messageIndex = elastic.Indices.Exists(Configuration["elasticsearchserver:Message"].ToString());
+                var reportedIndex = elastic.Indices.Exists(Configuration["elasticsearchserver:ReportedUser"].ToString());
+                if (!messageIndex.Exists)
                 {
                     elastic.Indices.Create(Configuration["elasticsearchserver:Message"].ToString(), ci => ci.Index(Configuration["elasticsearchserver:Message"].ToString()).MessageMapping().Settings(s => s.NumberOfShards(3).NumberOfReplicas(1)));
-                    elastic.Indices.Create(Configuration["elasticsearchserver:User"].ToString(), ci => ci.Index(Configuration["elasticsearchserver:User"].ToString()).MessageUserMapping().Settings(s => s.NumberOfShards(1).NumberOfReplicas(1)));
+                }                
+                if(!reportedIndex.Exists)
+                {
+                    elastic.Indices.Create(Configuration["elasticsearchserver:ReportedUser"].ToString(), ci => ci.Index(Configuration["elasticsearchserver:ReportedUser"].ToString()).ReportedUserMapping().Settings(s => s.NumberOfShards(1).NumberOfReplicas(1)));
                 }
                 return elastic;
             });

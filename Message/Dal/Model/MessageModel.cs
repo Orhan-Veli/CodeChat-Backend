@@ -22,7 +22,7 @@ namespace Message.Dal.Model
         public Guid CategoryId { get; set; }
    
         public string CategoryName { get; set; }
-    
+
         public DateTime CreatedOn { get; set; }
     }
 }

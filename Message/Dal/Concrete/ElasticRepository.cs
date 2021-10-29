@@ -45,22 +45,10 @@ namespace Message.Dal.Concrete
             return response.IsValid;
         }
 
-        public async Task<bool> CreateUserAsync(string id,OnlineUserModel onlineUserModel, string _indexName)
+        public async Task<List<T>> GetReportedMessagesAsync(List<Guid> messageIds,string _indexName)
         {
-            var response = await _elasticClient.CreateAsync(onlineUserModel, x => x.Index(_indexName).Id(id));
-            return response.IsValid;
-        }
-
-        public async Task<bool> DeleteUserAsync(string id,string _indexName)
-        {
-            var response = await _elasticClient.DeleteAsync<T>(id, x => x.Index(_indexName));
-            return response.IsValid;
-        }
-
-        public async Task<T> GetUserAsync(string name,string _indexName)
-        {
-             var response = await _elasticClient.SearchAsync<T>(x => x.Index(_indexName).Query(q => q.Match(x=>x.Field("userName").Query(name))));                         
-            return response.Documents.FirstOrDefault();
+            var response = await _elasticClient.SearchAsync<T>(t=> t.Index(_indexName).Query(x=> x.Ids(x=>x.Values(messageIds))));
+            return response.Documents.ToList();
         }
     }
 }

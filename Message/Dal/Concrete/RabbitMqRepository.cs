@@ -64,8 +64,6 @@ namespace Message.Dal.Concrete
                 );
             }
         }
-      
-
         public async Task Reciever()
         {
             using (IConnection connection = connectionFactory.CreateConnection())

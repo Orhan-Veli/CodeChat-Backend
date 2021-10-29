@@ -21,13 +21,13 @@ namespace Identity.Controllers
             _userService = userService;
         }
         [HttpPost("Sign")]
-        public async Task<IActionResult> SignIn([FromBody] UserModel userModel)
+        public async Task<IActionResult> SignInAsync([FromBody] UserModel userModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState.ErrorCount);
             }
-            var result = await _userService.CreateUser(userModel);
+            var result = await _userService.CreateUserAsync(userModel);
             if (result.Success)
             {
                 return Ok();
@@ -36,13 +36,13 @@ namespace Identity.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody]UserLoginModel userLoginModel)
+        public async Task<IActionResult> LoginAsync([FromBody]UserLoginModel userLoginModel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState.ErrorCount);
             }
-            var result = await _userService.Login(userLoginModel);
+            var result = await _userService.LoginAsync(userLoginModel);
             if(result.Success)
             {
                 return Ok(result.Message);
@@ -50,8 +50,20 @@ namespace Identity.Controllers
             return BadRequest();            
         }
 
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> BanUserAsync(Guid id)
+        {
+            var result = await _userService.BanUserAsync(id);
+            if(result.Success == false)
+            {
+                return BadRequest();
+            }
+            return Ok();
+        }
+
+
         [HttpPost("CheckUser")]
-        public async Task<IActionResult> CheckUserIsLoggedIn([FromHeader] string authorization)
+        public async Task<IActionResult> CheckUserIsLoggedInAsync([FromHeader] string authorization)
         {
             if(authorization == null) 
             {
@@ -60,7 +72,7 @@ namespace Identity.Controllers
                 if(AuthenticationHeaderValue.TryParse(authorization, out var headerVal))
                 {
                 var token = headerVal.Parameter;
-                var result = await _userService.CheckUser(token);
+                var result = await _userService.CheckUserAsync(token);
                 if(result.Success)
                 {
                     return Ok();
@@ -76,31 +88,31 @@ namespace Identity.Controllers
             return Ok();
         }
         //"[action]/{userId}/{token}"
-        [HttpGet("user/{userId}/{token}")]
-        public IActionResult UpdatePassword(string userId, string token)
-        {
-            return Ok();
-        }
+        // [HttpGet("user/{userId}/{token}")]
+        // public IActionResult UpdatePassword(string userId, string token)
+        // {
+        //     return Ok();
+        // }
 
-        [HttpPost("user/{userId}/{token}")]
-        public async Task<IActionResult> UpdatePassword(string password, string userId, string token)
-        {
-            var result = await _userService.UpdatePassword(password, userId, token);
-            if(result.Success)
-            {
-                return Ok();
-            }
-            return BadRequest();
-        }
+        // [HttpPost("user/{userId}/{token}")]
+        // public async Task<IActionResult> UpdatePassword(string password, string userId, string token)
+        // {
+        //     var result = await _userService.UpdatePassword(password, userId, token);
+        //     if(result.Success)
+        //     {
+        //         return Ok();
+        //     }
+        //     return BadRequest();
+        // }
         [HttpPost("role")]
-        public async Task<IActionResult> CreateRole([FromQuery]string role)
+        public async Task<IActionResult> CreateRoleAsync([FromQuery]string role)
         {
-            var result = await _userService.CreateRole(role);
+            var result = await _userService.CreateRoleAsync(role);
             return Ok();
         }
 
         [HttpPost("getuserrole")]
-        public async Task<IActionResult> GetUserRole([FromHeader] string authorization)
+        public async Task<IActionResult> GetUserRoleAsync([FromHeader] string authorization)
         {
             if(authorization == null) 
             {
@@ -109,13 +121,32 @@ namespace Identity.Controllers
                 if(AuthenticationHeaderValue.TryParse(authorization, out var headerVal))
                 {
                 var token = headerVal.Parameter;
-                var result = await _userService.GetUserRole(token);
+                var result = await _userService.GetUserRoleAsync(token);
                 if(result.Success)
                 {
                     return Ok(result.Message);
                 }
             }               
             return Unauthorized();
-        }    
+        }  
+
+        [HttpPost("getuserid")]
+        public async Task<IActionResult> GetUserIdAsync([FromHeader] string authorization)
+        {
+            if(authorization == null) 
+            {
+                return Unauthorized();
+            }
+            if(AuthenticationHeaderValue.TryParse(authorization, out var headerVal))
+            {
+                var token = headerVal.Parameter;
+                var result = await _userService.GetUserIdAsync(token);
+                if(result.Success)
+                {
+                    return Ok(result.Message);
+                }
+            }               
+            return Unauthorized();
+        }  
     }
 }

@@ -15,8 +15,6 @@ namespace Message.Dal.Abstract
         Task<T> GetAsync(Guid id,string _indexName);
         Task<List<T>> GetAllAsync(string _indexName);
         Task<bool> DeleteAsync(Guid id,string _indexName);
-        Task<bool> CreateUserAsync(string id,OnlineUserModel onlineUserModel, string _indexName);
-        Task<bool> DeleteUserAsync(string id,string _indexName);
-        Task<T> GetUserAsync(string name,string _indexName);
+        Task<List<T>> GetReportedMessagesAsync(List<Guid> messageIds,string _indexName);
     }
 }

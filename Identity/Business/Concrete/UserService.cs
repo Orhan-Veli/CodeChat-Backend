@@ -39,7 +39,7 @@ namespace Identity.Business.Concrete
             _roleManager = roleManager;
         }
 
-        public async Task<IResult<bool>> CreateUser(UserModel userModel)
+        public async Task<IResult<bool>> CreateUserAsync(UserModel userModel)
         {
             AppUser appUser = new AppUser
             {
@@ -56,7 +56,7 @@ namespace Identity.Business.Concrete
             }
             return new Result<bool>(false);
         }
-        public async Task<IResult<bool>> Login(UserLoginModel userLoginModel)
+        public async Task<IResult<bool>> LoginAsync(UserLoginModel userLoginModel)
         {
             AppUser user = await _userManager.FindByEmailAsync(userLoginModel.Email);
             var userRole = await _userManager.GetRolesAsync(user);
@@ -89,9 +89,9 @@ namespace Identity.Business.Concrete
             return new Result<bool>(false,"user is null");
         }
 
-        public async Task<IResult<string>> GetUserRole(string token)
+        public async Task<IResult<string>> GetUserRoleAsync(string token)
         {
-             try
+            try
             {
             var tokenHandler = new JwtSecurityTokenHandler();
             var securityToken = (JwtSecurityToken)tokenHandler.ReadToken(token);
@@ -104,7 +104,34 @@ namespace Identity.Business.Concrete
             }
         }
 
-        public async Task<IResult<bool>> CheckUser(string token)
+        public async Task<IResult<string>> GetUserIdAsync(string token)
+        {
+            try
+            {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var securityToken = (JwtSecurityToken)tokenHandler.ReadToken(token);
+            var claimValue = securityToken.Claims.FirstOrDefault(c => c.Type == "id")?.Value;
+                return new Result<string>(true,claimValue);
+            }
+            catch (Exception ex)
+            {
+                return new Result<string>(false);
+            }
+        }
+
+        public async Task<IResult<bool>> BanUserAsync(Guid id)
+        {
+            AppUser user = await _userManager.FindByIdAsync(id.ToString());
+            if(user != null)
+            {   
+                await _userManager.SetLockoutEnabledAsync(user,true);
+                await _userManager.SetLockoutEndDateAsync(user,new DateTime(2099,01,01));
+                return new Result<bool>(true);
+            }         
+            return new Result<bool>(false);
+        }
+
+        public async Task<IResult<bool>> CheckUserAsync(string token)
         {
             try
             {
@@ -135,7 +162,7 @@ namespace Identity.Business.Concrete
         }
 
 
-        public async Task<IResult<bool>> UpdatePassword(string password, string userId,string token)
+        public async Task<IResult<bool>> UpdatePasswordAsync(string password, string userId,string token)
         {
             AppUser user = await _userManager.FindByIdAsync(userId);
             IdentityResult result = await _userManager.ResetPasswordAsync(user, HttpUtility.UrlDecode(token), password);
@@ -147,7 +174,7 @@ namespace Identity.Business.Concrete
             return new Result<bool>(false);
         }
 
-        public async Task<IResult<bool>> CreateRole(string role)
+        public async Task<IResult<bool>> CreateRoleAsync(string role)
         {
             var checkRoleIsExist = await _roleManager.RoleExistsAsync(role);
             if(!checkRoleIsExist)

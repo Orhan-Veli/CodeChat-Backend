@@ -25,5 +25,13 @@ namespace Message.Extensions
             .Text(T => T.Name(N => N.UserName))            
             ));
         }
+        public static CreateIndexDescriptor ReportedUserMapping(this CreateIndexDescriptor descriptor)
+        {
+            return descriptor.Map<ReportedMessageModel>
+            (M => M.Properties
+            (T => T.Keyword(K => K.Name(N => N.MessageId))
+            .Text(T => T.Name(N => N.UserId))            
+            ));
+        }
     }
 }

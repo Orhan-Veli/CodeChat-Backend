@@ -78,6 +78,19 @@ namespace Message.Controllers
             return StatusCode((int)result.Response);
         }
 
+        [HttpPost("reportmessage")]
+        public async Task<IActionResult> CreateMessageUserAsync(ReportedMessageModel reportedMessageModel)
+        {
+            var result = await _elasticService.CreateMessageUserAsync(reportedMessageModel);
+            return StatusCode((int)result.Response);
+        }
+
+        [HttpGet("getallreportedmessages")]
+        public async Task<IActionResult> GetAllReportedMessagesAsync()
+        {
+            var result = await _elasticService.GetAllReportedMessageAsync();
+            return StatusCode((int)result.Response,result.Data);
+        }
     }
 }
 
