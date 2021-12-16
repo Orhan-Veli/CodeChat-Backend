@@ -15,5 +15,7 @@ namespace Message.Business.Abstract
         Task<IResult<bool>> DeleteAsync(Guid id);
         Task<IResult<bool>> CreateMessageUserAsync(ReportedMessageModel reportedMessageModel);
         Task<IResult<List<MessageModel>>> GetAllReportedMessageAsync();
+        Task<IResult<long>> GetAllMessageCountAsync();
+        Task<IResult<long>> GetAllReportedMessageCountAsync();
     }
 }

@@ -121,10 +121,36 @@ namespace Message.Business.Concrete
              var reportedMessageList = await _elasticRepository.GetReportedMessagesAsync(messageList.Select(x => x.MessageId).ToList(),_messageIndexName);
              if(reportedMessageList == null)
              {
-                 Log.Logger.Information("ReportedMessageList could not be found." + DateTime.Now);
-                 return new Result<List<MessageModel>>(false,new List<MessageModel>(),HttpStatusCode.NotFound);
+                Log.Logger.Information("ReportedMessageList could not be found." + DateTime.Now);
+                return new Result<List<MessageModel>>(false,new List<MessageModel>(),HttpStatusCode.NotFound);
              }
              return new Result<List<MessageModel>>(true,reportedMessageList,HttpStatusCode.Ok);
+         }
+         public async Task<IResult<long>> GetAllMessageCountAsync()
+         {
+             var count = await _elasticRepository.GetAllMessageCountAsync(_messageIndexName);
+             if(count == 0)
+             {
+                Log.Logger.Information("GetAllMessageCount is 0." + DateTime.Now);
+                return new Result<long>(false,-1,HttpStatusCode.NotFound);
+             }
+             return new Result<long>(true,count,HttpStatusCode.Ok);
+         }
+         public async Task<IResult<long>> GetAllReportedMessageCountAsync()
+         {
+            var messageList = await _reportedRepository.GetAllAsync(_reportedUserIndexName);
+             if(messageList == null)
+             {
+                Log.Logger.Information("MessageList could not be found." + DateTime.Now);
+                return new Result<long>(false,-1,HttpStatusCode.NotFound);
+             }             
+             var count = await _elasticRepository.GetAllReportedMessageCountAsync(messageList.Select(x => x.MessageId).ToList(),_messageIndexName);
+             if(count == 0)
+             {
+                Log.Logger.Information("GetAllReportedMessageCount is 0." + DateTime.Now);
+                return new Result<long>(false,-1,HttpStatusCode.NotFound);
+             }
+             return new Result<long>(true,count,HttpStatusCode.Ok);
          }
     }
 }

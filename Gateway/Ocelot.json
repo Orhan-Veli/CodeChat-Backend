@@ -1,0 +1,44 @@
+
+{
+    "Routes": [
+        {
+        "DownstreamPathTemplate": "/api/category/{everything}",
+        "DownstreamScheme": "http",
+        "DownstreamHostAndPorts": [
+            {
+                "Host": "localhost",
+                "Port": 7000
+            }
+        ],
+        "UpstreamPathTemplate": "/category/{everything}",
+        "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/user/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 7001
+                }
+            ],
+            "UpstreamPathTemplate": "/user/{everything}",
+            "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE" ]
+        },
+        {
+            "DownstreamPathTemplate": "/api/message/{everything}",
+            "DownstreamScheme": "http",
+            "DownstreamHostAndPorts": [
+                {
+                    "Host": "localhost",
+                    "Port": 7002
+                }
+            ],
+            "UpstreamPathTemplate": "/message/{everything}",
+            "UpstreamHttpMethod": [ "GET","POST","PUT","DELETE" ]
+        }
+    ],
+    "GlobalConfiguration": {
+        "BaseUrl": "http://localhost:7007"
+    }
+}

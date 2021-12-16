@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Identity.Utilities.Abstract;
 using Identity.Model;
+using Identity.Dtos;
 namespace Identity.Business.Abstract
 {
     public interface IUserService
@@ -16,5 +17,7 @@ namespace Identity.Business.Abstract
         Task<IResult<string>> GetUserRoleAsync(string token);
         Task<IResult<string>> GetUserIdAsync(string token);
         Task<IResult<bool>> BanUserAsync(Guid id);
+        Task<IResult<List<GetAllUsersDto>>> GetAllUserAsync();
+        Task<IResult<bool>> UpdateUserRoleAsync(string Id,string userRole);
     }
 }

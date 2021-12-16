@@ -12,6 +12,7 @@ using Category.Business.Concrete;
 using Microsoft.EntityFrameworkCore;
 using FluentValidation;
 using Microsoft.AspNetCore.Cors;
+using Core.Filters;
 
 namespace Category.Controllers
 {
@@ -25,35 +26,36 @@ namespace Category.Controllers
         {
             _categoryService = categoryService;
         }
-
-        [HttpGet]
+        
+        [CustomAuthorizeAttribute(new string[]{"Admin", "User"})]
+        [HttpGet("getall")]
         public async Task<IActionResult> GetAllAsync()
         {
             var result = await _categoryService.GetAllAsync();          
             return StatusCode((int)result.Response,new { result.Message ,result.Data});
         }
-
+        [CustomAuthorizeAttribute(new string[]{"Admin"})]
         [HttpPost]
         public async Task<IActionResult> BulkCreateAsync([FromBody] List<CategoryDto> categories)
         {
             var result = await _categoryService.BulkCreateAsync(categories);            
             return StatusCode((int)result.Response,new { result.Message ,result.Data});
         }
-
+        [CustomAuthorizeAttribute(new string[]{"Admin"})]
         [HttpPost("create")]
         public async Task<IActionResult> CreateAsync(CategoryDto category)
         {   
             var result = await _categoryService.CreateAsync(category);
             return StatusCode((int)result.Response,new { result.Message ,result.Data});
         }
-
+        [CustomAuthorizeAttribute(new string[]{"Admin"})]
         [HttpDelete]
         public async Task<IActionResult> BulkDeleteAsync()
         {
             var result = await _categoryService.BulkDeleteAsync();
             return StatusCode((int)result.Response);
         }
-
+        [CustomAuthorizeAttribute(new string[]{"Admin"})]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {

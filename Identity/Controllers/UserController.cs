@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using Identity.Model;
 using Identity.Business.Concrete;
 using Microsoft.AspNetCore.Cors;
+using Core.Filters;
+using Identity.Dtos;
 namespace Identity.Controllers
 {
     [ApiController]
@@ -20,7 +23,8 @@ namespace Identity.Controllers
         {
             _userService = userService;
         }
-        [HttpPost("Sign")]
+        [AllowAnonymous]
+        [HttpPost("sign")]
         public async Task<IActionResult> SignInAsync([FromBody] UserModel userModel)
         {
             if (!ModelState.IsValid)
@@ -34,8 +38,8 @@ namespace Identity.Controllers
             }
             return BadRequest();
         }
-
-        [HttpPost("Login")]
+        [AllowAnonymous]
+        [HttpPost("login")]
         public async Task<IActionResult> LoginAsync([FromBody]UserLoginModel userLoginModel)
         {
             if (!ModelState.IsValid)
@@ -49,7 +53,8 @@ namespace Identity.Controllers
             }
             return BadRequest();            
         }
-
+        
+        [CustomAuthorizeAttribute(new string[]{"Admin"})]
         [HttpPut("{Id}")]
         public async Task<IActionResult> BanUserAsync(Guid id)
         {
@@ -61,8 +66,8 @@ namespace Identity.Controllers
             return Ok();
         }
 
-
-        [HttpPost("CheckUser")]
+        [CustomAuthorizeAttribute(new string[]{"Admin", "User"})]
+        [HttpPost("checkuser")]
         public async Task<IActionResult> CheckUserIsLoggedInAsync([FromHeader] string authorization)
         {
             if(authorization == null) 
@@ -80,7 +85,7 @@ namespace Identity.Controllers
             }               
             return Unauthorized();
         }
-
+        [CustomAuthorizeAttribute(new string[]{"Admin", "User"})] 
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {
@@ -104,14 +109,16 @@ namespace Identity.Controllers
         //     }
         //     return BadRequest();
         // }
+        [CustomAuthorizeAttribute(new string[]{"Admin"})]
         [HttpPost("role")]
         public async Task<IActionResult> CreateRoleAsync([FromQuery]string role)
         {
             var result = await _userService.CreateRoleAsync(role);
             return Ok();
         }
-
-        [HttpPost("getuserrole")]
+        
+        [CustomAuthorizeAttribute(new string[]{"Admin", "User"})]       
+        [HttpGet("getuserrole")]
         public async Task<IActionResult> GetUserRoleAsync([FromHeader] string authorization)
         {
             if(authorization == null) 
@@ -129,8 +136,8 @@ namespace Identity.Controllers
             }               
             return Unauthorized();
         }  
-
-        [HttpPost("getuserid")]
+        [CustomAuthorizeAttribute(new string[]{"Admin", "User"})] 
+        [HttpGet("getuserid")]
         public async Task<IActionResult> GetUserIdAsync([FromHeader] string authorization)
         {
             if(authorization == null) 
@@ -147,6 +154,20 @@ namespace Identity.Controllers
                 }
             }               
             return Unauthorized();
-        }  
+        }
+        [CustomAuthorizeAttribute(new string[]{"Admin"})] 
+        [HttpGet("getalluser")]
+        public async Task<IActionResult> GetAllUserAsync()
+        {
+            var result = await _userService.GetAllUserAsync();
+            return Ok(result);
+        } 
+        [CustomAuthorizeAttribute(new string[]{"Admin"})] 
+        [HttpPut("updateuserrole")]
+        public async Task<IActionResult> UpdateUserRoleAsync([FromBody] UpdateUserRoleDto updateUserRoleDto)
+        {
+            var result = await _userService.UpdateUserRoleAsync(updateUserRoleDto.UserId,updateUserRoleDto.UserRole);
+            return Ok(result);
+        } 
     }
 }

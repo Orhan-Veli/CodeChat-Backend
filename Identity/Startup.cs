@@ -20,11 +20,13 @@ using Identity.Model.Context;
 using Identity.Business.Concrete;
 using Microsoft.AspNetCore.CookiePolicy;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Authorization;
 using FluentValidation;
 using Identity.Validations;
 using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Identity.Dtos;
 using System.IdentityModel.Tokens.Jwt;
 namespace Identity
 {
@@ -82,26 +84,12 @@ namespace Identity
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
             });
-            services.AddSignalR();
-            
-            // services.ConfigureApplicationCookie(x=>
-            // {
-            //     x.LoginPath = new PathString("/Home");                
-            //     x.Cookie = new CookieBuilder
-            //     {
-            //         Name = "CodeChatCookie",
-            //         HttpOnly = true,                     
-            //         //Expiration = TimeSpan.FromMinutes(120),
-            //         SameSite = SameSiteMode.None,
-            //         SecurePolicy = CookieSecurePolicy.Always
-            //     };
-            //     x.SlidingExpiration = true;
-            //     x.ExpireTimeSpan = TimeSpan.FromMinutes(120);
-            // });
 
+            services.AddSignalR();
             services.AddScoped<UserService>();
             services.AddTransient<IValidator<UserModel>,UserModelValidation>();
             services.AddTransient<IValidator<UserLoginModel>,UserLoginModelValidation>();
+            services.AddTransient<IValidator<UpdateUserRoleDto>,UpdateUserRoleDtoValidation>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

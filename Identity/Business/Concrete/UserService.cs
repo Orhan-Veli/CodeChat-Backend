@@ -23,6 +23,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using Identity.Dtos;
 namespace Identity.Business.Concrete
 {
     public class UserService : IUserService
@@ -59,7 +60,7 @@ namespace Identity.Business.Concrete
         public async Task<IResult<bool>> LoginAsync(UserLoginModel userLoginModel)
         {
             AppUser user = await _userManager.FindByEmailAsync(userLoginModel.Email);
-            var userRole = await _userManager.GetRolesAsync(user);
+            var userRole = await _userManager.GetRolesAsync(user);         
             if(user != null)
             {
                 await _signInManager.SignOutAsync();
@@ -184,6 +185,45 @@ namespace Identity.Business.Concrete
                 await _roleManager.CreateAsync(newRole);
             }
             return new Result<bool>(true);
+        }
+
+        public async Task<IResult<List<GetAllUsersDto>>> GetAllUserAsync()
+        {
+            var usersDto = new List<GetAllUsersDto>();
+            var userList = await _userManager.Users.ToListAsync();     
+            if(userList != null)
+            {
+                foreach (var user in userList)
+                {
+                    var userDto = new GetAllUsersDto
+                    {
+                        UserId = Guid.Parse(user.Id),
+                        Email = user.Email,
+                        LockoutDate = user.LockoutEnd?.ToString("MM/dd/yyyy"),
+                        UserName = user.UserName,
+                        UserRole = _userManager.GetRolesAsync(user).Result?.FirstOrDefault()
+                    };
+                    usersDto.Add(userDto);
+                }
+            return new Result<List<GetAllUsersDto>>(true,usersDto);
+            }
+            return new Result<List<GetAllUsersDto>>(true,new List<GetAllUsersDto>());
+        }
+
+        public async Task<IResult<bool>> UpdateUserRoleAsync(string Id,string userRole)
+        {
+            var user = await _userManager.FindByIdAsync(Id);
+            if(user != null)
+            {
+                var removeRole = await _userManager.RemoveFromRoleAsync(user,userRole);
+                if(removeRole.Succeeded)
+                {
+                    var newRoleName = (userRole == "User") ? "Admin" : "User";
+                    await _userManager.AddToRoleAsync(user,newRoleName);                       
+                    return new Result<bool>(true);
+                }
+            }
+            return new Result<bool>(false);
         }
     }
 }

@@ -11,6 +11,7 @@ using Serilog;
 using Microsoft.AspNetCore.Cors;
 using System.Net.Http.Headers;
 using System.IdentityModel.Tokens.Jwt;
+using Core.Filters;
 namespace Message.Controllers
 {
     [ApiController]
@@ -25,7 +26,8 @@ namespace Message.Controllers
             _elasticService = elasticService;
             _rabbit = rabbit;
         }
-        [HttpPost]
+        [CustomAuthorizeAttribute(new string[]{"Admin", "User"})]
+        [HttpPost("createmessage")]
         public async Task<IActionResult> CreateAsync([FromBody] MessageModel model, [FromHeader] string authorization)
         {
             if (!ModelState.IsValid || String.IsNullOrEmpty(authorization))
@@ -45,21 +47,21 @@ namespace Message.Controllers
             await _rabbit.Reciever();
             return StatusCode((int)result.Response);
         }
-
+        [CustomAuthorizeAttribute(new string[]{"Admin", "User"})]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetAsync(Guid id)
         {
             var result = await _elasticService.GetAsync(id);
             return StatusCode((int)result.Response,new { result.Message,result.Data });
         }
-
+        [CustomAuthorizeAttribute(new string[]{"Admin", "User"})]
         [HttpGet("getall/{id}")]
         public async Task<IActionResult> GetAllAsync(Guid id)
         {
             var result = await _elasticService.GetAllAsync(id);
             return StatusCode((int)result.Response,new {result.Message,result.Data });
         }
-
+        [CustomAuthorizeAttribute(new string[]{"Admin", "User"})]
         [HttpPut]
         public async Task<IActionResult> UpdateAsync([FromBody] MessageModel model)
         {
@@ -70,25 +72,40 @@ namespace Message.Controllers
             var result = await _elasticService.UpdateAsync(model);
             return StatusCode((int)result.Response,result.Data);
         }
-
+       
+        [CustomAuthorizeAttribute(new string[]{"Admin"})]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
             var result = await _elasticService.DeleteAsync(id);
             return StatusCode((int)result.Response);
         }
-
+        [CustomAuthorizeAttribute(new string[]{"Admin", "User"})]
         [HttpPost("reportmessage")]
         public async Task<IActionResult> CreateMessageUserAsync(ReportedMessageModel reportedMessageModel)
         {
             var result = await _elasticService.CreateMessageUserAsync(reportedMessageModel);
             return StatusCode((int)result.Response);
         }
-
+        [CustomAuthorizeAttribute(new string[]{"Admin"})]
         [HttpGet("getallreportedmessages")]
         public async Task<IActionResult> GetAllReportedMessagesAsync()
         {
             var result = await _elasticService.GetAllReportedMessageAsync();
+            return StatusCode((int)result.Response,result.Data);
+        }
+        [CustomAuthorizeAttribute(new string[]{"Admin"})]
+        [HttpGet("getallmessagecountasync")]
+        public async Task<IActionResult> GetAllMessageCountAsync()
+        {
+            var result = await _elasticService.GetAllMessageCountAsync();
+            return StatusCode((int)result.Response,result.Data);
+        }
+        [CustomAuthorizeAttribute(new string[]{"Admin"})]
+        [HttpGet("getallreportedmessagecountasync")]
+        public async Task<IActionResult> GetAllReportedMessageCountAsync()
+        {
+            var result = await _elasticService.GetAllReportedMessageCountAsync();
             return StatusCode((int)result.Response,result.Data);
         }
     }

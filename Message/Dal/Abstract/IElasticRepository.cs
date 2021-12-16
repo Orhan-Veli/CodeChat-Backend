@@ -16,5 +16,7 @@ namespace Message.Dal.Abstract
         Task<List<T>> GetAllAsync(string _indexName);
         Task<bool> DeleteAsync(Guid id,string _indexName);
         Task<List<T>> GetReportedMessagesAsync(List<Guid> messageIds,string _indexName);
+        Task<long> GetAllMessageCountAsync(string _indexName);
+        Task<long> GetAllReportedMessageCountAsync(List<Guid> messageIds,string _indexName);
     }
 }

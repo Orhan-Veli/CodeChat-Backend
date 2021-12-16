@@ -50,5 +50,17 @@ namespace Message.Dal.Concrete
             var response = await _elasticClient.SearchAsync<T>(t=> t.Index(_indexName).Query(x=> x.Ids(x=>x.Values(messageIds))));
             return response.Documents.ToList();
         }
+
+        public async Task<long> GetAllMessageCountAsync(string _indexName)
+        {   
+            var response = _elasticClient.Count<T>(x => x.Index(_indexName)); 
+            return response.Count;
+        }
+
+        public async Task<long> GetAllReportedMessageCountAsync(List<Guid> messageIds,string _indexName)
+        {
+            var response =  _elasticClient.Count<T>(t=> t.Index(_indexName).Query(x=> x.Ids(x=>x.Values(messageIds))));
+            return response.Count;
+        }
     }
 }

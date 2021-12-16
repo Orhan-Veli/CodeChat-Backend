@@ -1,16 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using Message.Dal.Abstract;
 using Message.Dal.Concrete;
 using Message.Dal.Model;
@@ -21,9 +14,6 @@ using Message.Extensions;
 using Message.Validation;
 using Message.Dal.SignalRHub;
 using FluentValidation;
-using Microsoft.AspNetCore.SignalR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Cors;
 namespace Message
 {
     public class Startup
@@ -34,7 +24,6 @@ namespace Message
             Configuration = configuration;
 
         }
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -81,6 +70,17 @@ namespace Message
                 return elastic;
             });
             services.AddTransient<IValidator<MessageModel>, MessageModelValidation>();
+
+            services.AddDistributedRedisCache(options =>
+            {
+                options.Configuration = Configuration["rediscache:Url"];
+            });
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = Configuration["rediscache:Host"];
+                options.InstanceName = Configuration["rediscache:instancename"];
+            });
+
             services.AddMvc();
 
         }
